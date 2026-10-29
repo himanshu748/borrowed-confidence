@@ -125,3 +125,17 @@ It checks playback, dialog closure, the interactive stockout and budget controls
 5. Confirm student eligibility and opt in to Rising Star on Devpost.
 6. Deploy the full app, provide repository access and record a 1–3 minute public demo.
 7. Keep free judge access available through November 20, 2026.
+
+## Media packaging for connected GitHub uploads
+
+The connected GitHub upload action accepts text files. To preserve the actual images and video without corrupting binary bytes, this repository stores a reversible Base64 media bundle under .asset-pack. The manifest includes SHA-256 hashes for every original file and chunk. This is storage encoding, not a link to private thread files or a runtime API dependency.
+
+The prebuild and predev hooks restore original JPEG and MP4 files automatically before Vite runs. To restore media and synthetic test evidence separately:
+
+```sh
+npm run assets:restore
+```
+
+Restoration validates hashes, allows only media destinations under src/media and live-evidence and refuses to overwrite modified files. The original restored files are ignored by Git because the bundle is the checked-in source. No PAT or API key is needed for decoding, local planning, tests or the recorded walkthrough. Live YouCam requests still require secure server credentials and explicit operator enablement.
+
+Public evidence reports retain the observed API-unit costs but omit account-balance totals. Generated build output, local databases, credentials and test screenshots are not included.

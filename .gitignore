@@ -1,0 +1,23 @@
+node_modules/
+dist/
+data/
+.env
+.env.*
+!.env.example
+playwright-report/
+test-results/
+
+.data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Generated review artifact and locally restored media
+preview.html
+src/media/*.jpg
+src/media/*.jpeg
+src/media/*.png
+src/media/*.mp4
+live-evidence/**/*.jpg
+live-evidence/**/*.jpeg
+live-evidence/**/*.png

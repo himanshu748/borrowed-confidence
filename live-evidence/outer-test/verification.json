@@ -1,0 +1,27 @@
+{
+  "provider": "YouCam",
+  "endpoint": "cloth-v4",
+  "category": "outer",
+  "syntheticInputs": true,
+  "realProviderResult": true,
+  "state": "success",
+  "startedAt": "2026-10-25T10:23:00.749Z",
+  "finishedAt": "2026-10-25T10:23:30.126Z",
+  "elapsedSeconds": 29,
+  "width": 1792,
+  "height": 2400,
+  "resultFile": "live-evidence/outer-test/youcam-result.jpg",
+  "listedUnitsPerResult": 2,
+  "observedUnitsConsumed": 2,
+  "paidTaskAttempts": 1,
+  "filterMultiPerson": "strict",
+  "visualReview": {
+    "shirtVisibleUnderBlazer": true,
+    "chestCovered": true,
+    "trousersVisuallyConsistent": true,
+    "shoesVisuallyConsistent": true,
+    "physicalFitVerified": false
+  },
+  "sourceFile": "live-evidence/outer-test/synthetic-person.jpg",
+  "referenceFile": "live-evidence/outer-test/synthetic-blazer.jpg"
+}

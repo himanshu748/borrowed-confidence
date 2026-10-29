@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "chunkBytes": 196608,
+  "files": [
+    {
+      "path": "live-evidence/outer-test/synthetic-blazer.jpg",
+      "size": 474011,
+      "sha256": "026ca1c3b4c0fc1048388982268c9bcffaf9d1ecbe330650b2872b682aa3e6cc",
+      "chunks": [
+        {
+          "path": ".asset-pack/chunks/994dcfd8fe0c3303a15fb53ba0e8205ee4f03573dedc169c4386c8cb8c0b36a8.b64",
+          "size": 196608,
+          "sha256": "994dcfd8fe0c3303a15fb53ba0e8205ee4f03573dedc169c4386c8cb8c0b36a8"
+        },
+        {
+          "path": ".asset-pack/chunks/0e6c96a4fefda186a13aafae24c9b597ad1cee8cb07610ccc7ebbcdde516f3a9.b64",
+          "size": 196608,
+          "sha256": "0e6c96a4fefda186a13aafae24c9b597ad1cee8cb07610ccc7ebbcdde516f3a9"
+        },
+        {
+          "path": ".asset-pack/chunks/0b39f41b6c64237e497c2c58d23d6ede7d2580fedf305cf7eacafb79d58b175a.b64",
+          "size": 80795,
+          "sha256": "0b39f41b6c64237e497c2c58d23d6ede7d2580fedf305cf7eacafb79d58b175a"
+        }
+      ]
+    },
+    {
+      "path": "live-evidence/outer-test/synthetic-person.jpg",
+      "size": 1697331,
+      "sha256": "6b7eabb84cd0c3176f402337001f2f92868089477224026345486e7b85665ef7",
+      "chunks": [
+        {
+          "path": ".asset-pack/chunks/100da888c4cd7699e284b6896ebbb3ed4ac6089cc714379d2cac67de6ae963c5.b64",
+          "size": 196608,
+          "sha256": "100da888c4cd7699e284b6896ebbb3ed4ac6089cc714379d2cac67de6ae963c5"
+        },
+        {
+          "path": ".asset-pack/chunks/6b988bad014a4fc3ae43cc322f0685a693523b310a2a7b351204ca71467484ac.b64",
+          "size": 196608,
+          "sha256": "6b988bad014a4fc3ae43cc322f0685a693523b310a2a7b351204ca71467484ac"
+        },
+        {
+          "path": ".asset-pack/chunks/b8b9e9d3d69cd6257356393a631fbdd1ad3e769fc54c0de42f4c57b0db8482b1.b64",
+          "size": 196608,
+          "sha256": "b8b9e9d3d69cd6257356393a631fbdd1ad3e769fc54c0de42f4c57b0db8482b1"
+        },
+        {
+          "path": ".asset-pack/chunks/c9ee16e411986e30bb2704132a4c84aec95ef2eff66ced09d94daf1ed0c368ce.b64",
+          "size": 196608,
+          "sha256": "c9ee16e411986e30bb2704132a4c84aec95ef2eff66ced09d94daf1ed0c368ce"
+        },
+        {
+          "path": ".asset-pack/chunks/354d1491f287253b57a0978dd9315c32057f5f091072adf5c9846473575b2f5c.b64",
+          "size": 196608,
+          "sha256": "354d1491f287253b57a0978dd9315c32057f5f091072adf5c9846473575b2f5c"
+        },
+        {
+          "path": ".asset-pack/chunks/7551af79661effa29f2a979a7ef5a43290c7a2cda3df361a9a3be53977af1579.b64",
+          "size": 196608,
+          "sha256": "7551af79661effa29f2a979a7ef5a43290c7a2cda3df361a9a3be53977af1579"
+        },
+        {
+          "path": ".asset-pack/chunks/08914059da4126ddde4fe211ac2f32fd2871664db5ab830f80e3655489c1a486.b64",
+          "size": 196608,
+          "sha256": "08914059da4126ddde4fe211ac2f32fd2871664db5ab830f80e3655489c1a486"
+        },
+        {
+          "path": ".asset-pack/chunks/6d4d6544ea106fd2fe523b8451c86abdfc874c6377dc6698fa04c5d898fd4a69.b64",
+          "size": 196608,
+          "sha256": "6d4d6544ea106fd2fe523b8451c86abdfc874c6377dc6698fa04c5d898fd4a69"
+        },
+        {
+          "path": ".asset-pack/chunks/f06c684e249e3223a5901fb0226d644cdef142254faeb35fc28ec6ba0345ca46.b64",
+          "size": 124467,
+          "sha256": "f06c684e249e3223a5901fb0226d644cdef142254faeb35fc28ec6ba0345ca46"
+        }
+      ]
+    },
+    {
+      "path": "live-evidence/outer-test/youcam-result.jpg",
+      "size": 366521,
+      "sha256": "1bf4ecfca04957b99964ea3e54008644662c7d0804b3c5e0f8003078485b6911",
+      "chunks": [
+        {
+          "path": ".asset-pack/chunks/8f58c29febdd4e8463887d26093dd98fbe1a2648e46c4bb964c1b546388b6aab.b64",
+          "size": 196608,
+          "sha256": "8f58c29febdd4e8463887d26093dd98fbe1a2648e46c4bb964c1b546388b6aab"
+        },
+        {
+          "path": ".asset-pack/chunks/ee8743e91660376acaecc96c36c2e84c325f84f293e1a87b61f6506a8f3b77f5.b64",
+          "size": 169913,
+          "sha256": "ee8743e91660376acaecc96c36c2e84c325f84f293e1a87b61f6506a8f3b77f5"
+        }
+      ]
+    },
+    {
+      "path": "live-evidence/synthetic-blazer.jpg",
+      "size": 474011,
+      "sha256": "026ca1c3b4c0fc1048388982268c9bcffaf9d1ecbe330650b2872b682aa3e6cc",
+      "chunks": [
+        {
+          "path": ".asset-pack/chunks/994dcfd8fe0c3303a15fb53ba0e8205ee4f03573dedc169c4386c8cb8c0b36a8.b64",
+          "size": 196608,
+          "sha256": "994dcfd8fe0c3303a15fb53ba0e8205ee4f03573dedc169c4386c8cb8c0b36a8"
+        },
+        {
+          "path": ".asset-pack/chunks/0e6c96a4fefda186a13aafae24c9b597ad1cee8cb07610ccc7ebbcdde516f3a9.b64",
+          "size": 196608,
+          "sha256": "0e6c96a4fefda186a13aafae24c9b597ad1cee8cb07610ccc7ebbcdde516f3a9"
+        },
+        {
+          "path": ".asset-pack/chunks/0b39f41b6c64237e497c2c58d23d6ede7d2580fedf305cf7eacafb79d58b175a.b64",
+          "size": 80795,
+          "sha256": "0b39f41b6c64237e497c2c58d23d6ede7d2580fedf305cf7eacafb79d58b175a"
+        }
+      ]
+    },
+    {
+      "path": "live-evidence/synthetic-person.jpg",
+      "size": 538148,
+      "sha256": "dbf57b03b06537493453287d476d2ab47cd40d5322eb69efb25d2914686b5424",
+      "chunks": [
+        {
+          "path": ".asset-pack/chunks/e0e7f2778d521b50ebf8d80b02fc5d8ef03b14c580000a06529a66acae7b9d14.b64",
+          "size": 196608,
+          "sha256": "e0e7f2778d521b50ebf8d80b02fc5d8ef03b14c580000a06529a66acae7b9d14"
+        },
+        {
+          "path": ".asset-pack/chunks/3e2df244c6c020c615391a4a7ee284f53b68c47206c591ec5c5923452c6d8ec0.b64",
+          "size": 196608,
+          "sha256": "3e2df244c6c020c615391a4a7ee284f53b68c47206c591ec5c5923452c6d8ec0"
+        },
+        {
+          "path": ".asset-pack/chunks/68b4b6c3803dc5a5df681a8f3df01a57c5814d7a04990f0521276d5656ed5b0d.b64",
+          "size": 144932,
+          "sha256": "68b4b6c3803dc5a5df681a8f3df01a57c5814d7a04990f0521276d5656ed5b0d"
+        }
+      ]
+    },
+    {
+      "path": "live-evidence/youcam-result.jpg",
+      "size": 115103,
+      "sha256": "0b53b3550af71458b72622754083abb0ce1b6b641cdd2c75f416430fdcab5358",
+      "chunks": [
+        {
+          "path": ".asset-pack/chunks/0b53b3550af71458b72622754083abb0ce1b6b641cdd2c75f416430fdcab5358.b64",
+          "size": 115103,
+          "sha256": "0b53b3550af71458b72622754083abb0ce1b6b641cdd2c75f416430fdcab5358"
+        }
+      ]
+    },
+    {
+      "path": "src/media/portrait-a.jpg",
+      "size": 84904,
+      "sha256": "f5aaf03f8d150df2c02b6e65baea423a0975e92df3514fef9b0e444d9b43b5e7",
+      "chunks": [
+        {
+          "path": ".asset-pack/chunks/f5aaf03f8d150df2c02b6e65baea423a0975e92df3514fef9b0e444d9b43b5e7.b64",
+          "size": 84904,
+          "sha256": "f5aaf03f8d150df2c02b6e65baea423a0975e92df3514fef9b0e444d9b43b5e7"
+        }
+      ]
+    },
+    {
+      "path": "src/media/portrait-b.jpg",
+      "size": 192640,
+      "sha256": "51a2fcfa1c4b0b1d50abe12631b3b21f6b9287d1bfccba97039603a137ff46f9",
+      "chunks": [
+        {
+          "path": ".asset-pack/chunks/51a2fcfa1c4b0b1d50abe12631b3b21f6b9287d1bfccba97039603a137ff46f9.b64",
+          "size": 192640,
+          "sha256": "51a2fcfa1c4b0b1d50abe12631b3b21f6b9287d1bfccba97039603a137ff46f9"
+        }
+      ]
+    },
+    {
+      "path": "src/media/walkthrough.mp4",
+      "size": 514071,
+      "sha256": "9d096c691f76304a34154e0fe04e6a958b70b49717ca13449dc9c90f7a008096",
+      "chunks": [
+        {
+          "path": ".asset-pack/chunks/9849a377612393567d79e2873a01b0695a751705a10609c07b95803d0c2b8e32.b64",
+          "size": 196608,
+          "sha256": "9849a377612393567d79e2873a01b0695a751705a10609c07b95803d0c2b8e32"
+        },
+        {
+          "path": ".asset-pack/chunks/0d2a27933547b497b2d8f5b2e2bc75d26395167d546af216080c43560305a3f7.b64",
+          "size": 196608,
+          "sha256": "0d2a27933547b497b2d8f5b2e2bc75d26395167d546af216080c43560305a3f7"
+        },
+        {
+          "path": ".asset-pack/chunks/1e9f384277ddc645897c776a0465b8e4854e950f42c7bba98ad303e4fbaa0b93.b64",
+          "size": 120855,
+          "sha256": "1e9f384277ddc645897c776a0465b8e4854e950f42c7bba98ad303e4fbaa0b93"
+        }
+      ]
+    }
+  ]
+}
