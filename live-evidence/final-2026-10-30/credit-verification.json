@@ -1,0 +1,10 @@
+{
+  "balanceReadHTTP": 200,
+  "listedClothV4UnitsPerResult": 2,
+  "observedUnitDebit": 2.0,
+  "decimalRepresentationDebit": 2.0,
+  "balanceTotalsOmitted": true,
+  "autoRefillRemainedOff": true,
+  "newPurchases": false,
+  "note": "amount and amount_dec are alternative numeric representations, not values to add together."
+}

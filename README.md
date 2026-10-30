@@ -126,14 +126,14 @@ Chromium checks cover the existing landing/video, connected item/event context, 
 
 Use Node 24. On a machine with a global libvips installation, `SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm ci` selects Sharp's bundled binaries. This environment-specific repair does not change production behavior.
 
-## Next gates before submission
+## Final release evidence and remaining submission gates
 
-1. Two synthetic-input live tests complete, including one successful outerwear example. Validate a broader set of garments before making stronger claims.
-2. Record the live-enabled UI flow for judging. One real output is preserved in live-evidence; the current walkthrough predates that test.
+1. Three synthetic-input live tests are complete, including a fresh updated-UI outerwear run on October30 (17.62 seconds, exactly2 units). See docs/FINAL_LIVE_TEST.md. Broader compatibility remains unvalidated.
+2. A new160-second recording captures the real updated-UI render and complete rejection/replanning journey. The old landing walkthrough remains clearly historical.
 3. Replace or supplement the sample inventory with permissioned real garment photos.
 4. Test with students and report actual observations, not invented metrics.
-5. Confirm student eligibility and opt in to Rising Star on Devpost.
-6. Deploy the full app, provide repository access and record a 1–3 minute public demo.
+5. Participant confirmed student eligibility and rules agreement; connected Devpost email has school domain kmclu.ac.in. Verify actual Rising Star opt-in.
+6. Full app deployed on an existing persistent Node24 host with HTTPS. Public rendering stays off; labeled replay is functional. Hosted checks17/17 pass. Final public-video/submission receipts are recorded in delivered release artifacts.
 7. Keep free judge access available through November 20, 2026.
 
 ## Media packaging for connected GitHub uploads

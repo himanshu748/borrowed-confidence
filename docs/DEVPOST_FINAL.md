@@ -38,7 +38,9 @@ Two genuine YouCam smoke tests completed on October 25. `upper_body` took about 
 
 The seven-scenario evaluation retains the original fixture and records explicit input deltas. Independent exhaustive enumeration checks the objective and constraints. The baseline covers 3/3 events with ₹0 purchase spending and one borrowed piece. Stockout or rejection produces 3/3 at ₹850 with no borrowed pieces. A ₹500 stockout budget covers 2/3; making all layers unavailable covers 1/3. All seven have zero independently detected constraint violations. These are simulated scenario findings, not measured customer savings or human outcomes. See `docs/EVALUATION.md` for alternative counts and narrowly scoped local runtime measurements.
 
-The updated local automated suite has 42 passing tests, including consent, image validation, metadata stripping, origin/session isolation, persistent quotas, provider errors and interruption on restart. Chromium tests exercise the genuine replay decision loop and separately labeled HTTP-fixture progress/failure behavior. Fixture responses are never represented as newly generated live-provider evidence.
+A third authorized real outer request on October 30 completed through the updated private UI in 17.62 seconds and consumed exactly 2 units, verified by authenticated before/after balances. The white shirt remained visible under the blazer. The fresh 160-second video captures that request at actual speed, inspection, rejection, recalculation and the budget gap. Public access still uses the clearly labeled historical replay, with rendering disabled and no key on the public host. See docs/FINAL_LIVE_TEST.md.
+
+The tested application is hosted at https://borrowed-confidence.52.202.25.181.sslip.io/ . A fresh anonymous Chromium context passed 17 hosted checks, including replay decisions, budget gaps, mobile layouts, origin/session behavior and exact revision. The current local automated suite has 42 passing tests, including consent, image validation, metadata stripping, origin/session isolation, persistent quotas, provider errors and interruption on restart. Chromium tests exercise the genuine replay decision loop and separately labeled HTTP-fixture progress/failure behavior. Fixture responses are never represented as newly generated live-provider evidence.
 
 ## Challenges and limitations
 
@@ -52,7 +54,7 @@ A permissioned campus-closet pilot would test real availability policies and whe
 
 ## Exact custom form answers
 
-- **28685 Submitter type:** Individual, subject to participant confirmation of team composition.
+- **28685 Submitter type:** Individual (participant confirmed).
 - **28686 Country:** India (participant declaration).
 - **28687 App Status:** New. Repository implementation began during this hackathon's submission period; this finalization enhances that implementation. If the participant identifies pre-period project work, choose Existing & Enhanced and use the update answer below.
 - **28689 Existing update, if applicable:** Connected actual outfit selection to the YouCam studio; added before/after inspection, human acceptance/rejection and real replanning deltas; preserved both provider runs; added reproducible scenario evaluation, security fixes, browser coverage and persistent-host deployment configuration.
@@ -65,6 +67,16 @@ A permissioned campus-closet pilot would test real availability policies and whe
 
 ## Submission gates
 
-Do not submit with an invented video URL or an unchecked declaration. Required final checks: public YouTube/Vimeo video, gallery screenshots, hosted free access through the end of judging, participant rules agreement, final project classification/team confirmation, and truthful Rising Star opt-in details. Student enrollment, India residence and age eligibility are participant declarations; a school-issued email has not yet been verified. One project can win only one prize. No award or score is guaranteed.
+Do not submit with an invented video URL or an unchecked declaration. Required final checks: public YouTube/Vimeo video, gallery screenshots, hosted free access through the end of judging, participant rules agreement, final project classification/team confirmation, and truthful Rising Star opt-in details. The participant confirmed individual entry, India residence, age eligibility, current enrollment, school-issued Devpost email and official-rules agreement. The connected account domain kmclu.ac.in was verified. Enrollment is participant-declared; no documentary enrollment evidence was requested or independently checked. Rising Star opt-in must be verified in the actual submission form. One project can win only one prize. No award or score is guaranteed.
 
 Official sources checked October 30, 2026: https://youcam-api-skin-ai-ecommerce.devpost.com/rules and the authenticated Devpost submission-requirements API. The deadline is November 2 at 22:15 IST.
+
+## Verified release receipt — October 30, 2026
+
+Live app: https://borrowed-confidence.52.202.25.181.sslip.io/
+
+Public narrated video: https://www.youtube.com/watch?v=MSZC_hIJOiA (160 seconds; English captions and Deepgram narration).
+
+Devpost: https://devpost.com/software/borrowed-confidence — submission1272426 returned Submitted at2026-10-30T11:00:03.227Z. Fresh browser reload confirmed SUBMITTED,5/5 steps, and Rising Star Award opt-in106088. Eligibility is participant-declared with the connected school-domain email verified; no award is claimed.
+
+Independent AI review estimate: Technology4/5, Design4/5, Impact3/5, Idea4/5 =15/20. Not official judging or a prediction of winning.

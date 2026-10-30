@@ -1,3 +1,24 @@
+# Finalization status — release and submission verified
+
+As of October30,2026, Borrowed Confidence is deployed, the connected journey is verified, the fresh narrated demo is public, and Devpost submission1272426 is **Submitted**. Fresh browser reload confirms5/5 steps and saved Rising Star opt-in106088.
+
+- App: https://borrowed-confidence.52.202.25.181.sslip.io/
+- Repository: https://github.com/himanshu748/borrowed-confidence
+- Public narrated demo: https://www.youtube.com/watch?v=MSZC_hIJOiA (160 seconds)
+- Devpost: https://devpost.com/software/borrowed-confidence
+- Application behavior and fresh live footage were verified at28f251de93499a773cdc4ea1acca55147a411452. This final evidence-only commit is rebuilt/tested and deployed separately; the delivered release manifest and /api/status revision record its exact SHA. Application source files are unchanged from the live-verified revision.
+- Automated tests42/42, strict build, seven independently enumerated evaluation scenarios, both Chromium suites, hosted17/17 journey checks, and deployed42/42 build tests pass. Automated accessibility scan detects0 violations, with18 incomplete manual-review checks disclosed.
+- Fresh real YouCam cloth-v4 outer call:17.62 seconds to UI completion, exactly2 units consumed, one attempt, synthetic adult/garment inputs. Both October25 results remain intact. Public rendering stays disabled; public replay is explicitly historical.
+- Security fixes include Sharp0.35.5, pre-decoder image signatures, mandatory production HTTPS origin, strict cap configuration and tested photo-clearing races. npm audit0 known vulnerabilities.
+- Participant confirmed individual/India/age majority/current enrollment/school-issued email and rules agreement. Connected email domain kmclu.ac.in verified. Student enrollment was not independently documented; Rising Star selection is saved, not awarded.
+- Independent AI review estimate15/20 (Technology4,Design4,Impact3,Idea4). No guaranteed outcome.
+
+The one ongoing operational obligation is keeping free judge access available through the end of judging. Present availability is verified; future uptime cannot be retrospectively certified. No student research, real inventory integration, physical-device/Safari validation or broad model-quality study is claimed. No new AWS resource was purchased. The existing host retains its existing billing. Deepgram narration generation succeeded with the existing credential; its billing balance endpoint returned403, so narration charge was not separately verified. No billing settings changed.
+
+Detailed current evidence:docs/FINAL_LIVE_TEST.md,docs/EVALUATION.md,docs/SECURITY_FINALIZATION.md,docs/JUDGING_REVIEW.md,docs/DEVPOST_FINAL.md. Delivered outputs include the final release manifest, hosted/deployment receipts, full50-item checklist, independent review, screenshots and narrated video.
+
+## Dated baseline audit retained below
+
 # Finalization status
 
 Audit started 2026-10-30. Source baseline: `f686cfd077a51a67fad1cd2312a5f5f4928b3758`; fresh clone, clean working tree. Historical evidence is preserved unchanged.

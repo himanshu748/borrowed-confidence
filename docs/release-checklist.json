@@ -3,7 +3,7 @@
     "id": 1,
     "group": "Implementation",
     "requirement": "Node 24 clean dependency install",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "package.json",
       "package-lock.json"
@@ -12,13 +12,13 @@
     "expectedBehavior": "Lockfile install on Node24",
     "observedBehavior": "Installed successfully after machine-global libvips bypass",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 2,
     "group": "Implementation",
     "requirement": "All unit and HTTP tests pass",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts"
@@ -27,13 +27,13 @@
     "expectedBehavior": "No failed tests",
     "observedBehavior": "42 passed, 0 failed",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 3,
     "group": "Implementation",
     "requirement": "Strict TypeScript and production build",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/main.tsx",
       "src/Studio.tsx"
@@ -42,13 +42,13 @@
     "expectedBehavior": "Typecheck and Vite succeed",
     "observedBehavior": "Passed in local release candidate",
     "evidenceArtifact": "build stdout",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 4,
     "group": "Implementation",
     "requirement": "Preserve original solver and fixture",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "shared/planner.ts",
       "shared/demo.ts"
@@ -57,13 +57,13 @@
     "expectedBehavior": "No fixture or solver alteration",
     "observedBehavior": "No diff",
     "evidenceArtifact": "docs/evaluation-results.json",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 5,
     "group": "Implementation",
     "requirement": "Nonmutating exact bounded optimization",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "tests/planner.test.ts"
     ],
@@ -71,13 +71,13 @@
     "expectedBehavior": "Lexicographic objective and no mutation",
     "observedBehavior": "15 planner tests pass",
     "evidenceArtifact": "tests/planner.test.ts",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 6,
     "group": "Implementation",
     "requirement": "Original media and evidence intact",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       ".asset-pack",
       "scripts/restore-assets.mjs"
@@ -86,13 +86,13 @@
     "expectedBehavior": "9 hash-verified media originals",
     "observedBehavior": "9 restored/verified; no overwrite",
     "evidenceArtifact": "docs/PUBLIC_UPLOAD.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 7,
     "group": "YouCam",
     "requirement": "Current primary provider contract reviewed",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/youcam.ts"
     ],
@@ -100,13 +100,13 @@
     "expectedBehavior": "Auth, registration,PUT,task,poll correct",
     "observedBehavior": "Existing adapter matches; no protocol change",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 8,
     "group": "YouCam",
     "requirement": "Exact outer category and strict filtering",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "tests/server.test.ts"
     ],
@@ -114,13 +114,13 @@
     "expectedBehavior": "No category fallback",
     "observedBehavior": "Contract fixtures verify exact values",
     "evidenceArtifact": "tests/server.test.ts",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 9,
     "group": "YouCam",
     "requirement": "Two genuine historical results preserved",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "live-evidence",
       "docs/LIVE_TEST.md",
@@ -130,13 +130,13 @@
     "expectedBehavior": "Both successful outputs remain distinct",
     "observedBehavior": "Upper-body replacement and outer layering retained",
     "evidenceArtifact": "docs/LIVE_TEST.md; docs/OUTER_TEST.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 10,
     "group": "YouCam",
     "requirement": "Replay never implies new generation",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/Studio.tsx"
     ],
@@ -144,13 +144,13 @@
     "expectedBehavior": "Historical labels and 0 render POSTs",
     "observedBehavior": "Verified genuine historical image, no POST",
     "evidenceArtifact": "test-results/youcam-replay-desktop.png",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 11,
     "group": "YouCam",
     "requirement": "No automatic paid request or retry",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/Studio.tsx",
       "server/youcam.ts"
@@ -159,13 +159,13 @@
     "expectedBehavior": "Explicit submit only, duplicate protected",
     "observedBehavior": "Fixture double click and provider failure checks pass",
     "evidenceArtifact": "tests/journey.mjs",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 12,
     "group": "YouCam",
     "requirement": "Server gates and visitor-key independence",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "src/Studio.tsx"
@@ -174,27 +174,27 @@
     "expectedBehavior": "Planner works without visitor key",
     "observedBehavior": "Disabled mode sends no provider request",
     "evidenceArtifact": "tests/server.test.ts",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 13,
     "group": "YouCam",
     "requirement": "Fresh authorized live UI render",
-    "status": "blocked",
+    "status": "verified",
     "changedFiles": [
       "src/Studio.tsx"
     ],
     "verificationCommand": "Private price/balance preflight then one render",
     "expectedBehavior": "Key + verified units before task",
-    "observedBehavior": "User approved one render but current key/proxy unavailable; no new units spent",
-    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "observedBehavior": "One real updated-UI outer request succeeded in17.62s; authenticated balance debit2; no retry",
+    "evidenceArtifact": "docs/FINAL_LIVE_TEST.md",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 14,
     "group": "Journey",
     "requirement": "Select actual outfit garment and event",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/main.tsx",
       "src/Studio.tsx"
@@ -203,13 +203,13 @@
     "expectedBehavior": "Exact item/event in studio",
     "observedBehavior": "Navy blazer/interview context verified",
     "evidenceArtifact": "tests/journey.mjs",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 15,
     "group": "Journey",
     "requirement": "Person/garment consent and category",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/Studio.tsx"
     ],
@@ -217,13 +217,13 @@
     "expectedBehavior": "Generate disabled until images and consent",
     "observedBehavior": "HTTP-fixture UI checks pass",
     "evidenceArtifact": "tests/journey.mjs",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 16,
     "group": "Journey",
     "requirement": "Upload/render/complete/failure progress",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/Studio.tsx"
     ],
@@ -231,13 +231,13 @@
     "expectedBehavior": "Visible stages and errors",
     "observedBehavior": "HTTP fixtures exercise each stage; not live proof",
     "evidenceArtifact": "tests/journey.mjs",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 17,
     "group": "Journey",
     "requirement": "Before/after keyboard comparison",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/Studio.tsx"
     ],
@@ -245,13 +245,13 @@
     "expectedBehavior": "Range input usable by keys",
     "observedBehavior": "ArrowRight changes50 to51, actual result decoded",
     "evidenceArtifact": "test-results/youcam-replay-desktop.png",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 18,
     "group": "Journey",
     "requirement": "Accept keeps inspected candidate",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/main.tsx"
     ],
@@ -259,13 +259,13 @@
     "expectedBehavior": "Shortlist labels acceptance",
     "observedBehavior": "Accepted, spend remains0",
     "evidenceArtifact": "tests/journey.mjs",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 19,
     "group": "Journey",
     "requirement": "Reject changes real planner input",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/main.tsx"
     ],
@@ -273,13 +273,13 @@
     "expectedBehavior": "Excluded ID affects all events",
     "observedBehavior": "Navy blazer absent after recalculation",
     "evidenceArtifact": "tests/journey.mjs",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 20,
     "group": "Journey",
     "requirement": "Show coverage/budget/borrowing changes",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/main.tsx"
     ],
@@ -287,13 +287,13 @@
     "expectedBehavior": "Actual before/after metrics",
     "observedBehavior": "3/3\u21923/3; \u20b90\u2192\u20b9850; loans1\u21920",
     "evidenceArtifact": "test-results/recalculated-desktop.png",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 21,
     "group": "Journey",
     "requirement": "Preserve navigation and invalidate stale context",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "src/main.tsx"
     ],
@@ -301,13 +301,13 @@
     "expectedBehavior": "Home keeps edits, edited brief invalidates selection",
     "observedBehavior": "Browser checks pass",
     "evidenceArtifact": "tests/journey.mjs",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 22,
     "group": "Evaluation",
     "requirement": "Borrowed blazer covers all",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "scripts/evaluate.ts",
       "docs/EVALUATION.md"
@@ -316,13 +316,13 @@
     "expectedBehavior": "Independent objective matches, 0 violations",
     "observedBehavior": "3/3;\u20b90;1loan;4 complete alternatives; 0 violations; measured runtime in JSON",
     "evidenceArtifact": "docs/evaluation-results.json",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 23,
     "group": "Evaluation",
     "requirement": "Blazer unavailable",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "scripts/evaluate.ts",
       "docs/EVALUATION.md"
@@ -331,13 +331,13 @@
     "expectedBehavior": "Independent objective matches, 0 violations",
     "observedBehavior": "3/3;\u20b9850;0loans;1 alternative; 0 violations; measured runtime in JSON",
     "evidenceArtifact": "docs/evaluation-results.json",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 24,
     "group": "Evaluation",
     "requirement": "Replacement within budget",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "scripts/evaluate.ts",
       "docs/EVALUATION.md"
@@ -346,13 +346,13 @@
     "expectedBehavior": "Independent objective matches, 0 violations",
     "observedBehavior": "3/3;\u20b9850;0loans;1 alternative; 0 violations; measured runtime in JSON",
     "evidenceArtifact": "docs/evaluation-results.json",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 25,
     "group": "Evaluation",
     "requirement": "Replacement over budget",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "scripts/evaluate.ts",
       "docs/EVALUATION.md"
@@ -361,13 +361,13 @@
     "expectedBehavior": "Independent objective matches, 0 violations",
     "observedBehavior": "2/3;\u20b90;1loan;0 complete alternatives; 0 violations; measured runtime in JSON",
     "evidenceArtifact": "docs/evaluation-results.json",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 26,
     "group": "Evaluation",
     "requirement": "Borrow dates conflict",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "scripts/evaluate.ts",
       "docs/EVALUATION.md"
@@ -376,13 +376,13 @@
     "expectedBehavior": "Independent objective matches, 0 violations",
     "observedBehavior": "3/3;\u20b9850;0loans;3 alternatives; 0 violations; measured runtime in JSON",
     "evidenceArtifact": "docs/evaluation-results.json",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 27,
     "group": "Evaluation",
     "requirement": "Inspected garment rejected",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "scripts/evaluate.ts",
       "docs/EVALUATION.md"
@@ -391,13 +391,13 @@
     "expectedBehavior": "Independent objective matches, 0 violations",
     "observedBehavior": "3/3;\u20b9850;0loans;1 alternative; 0 violations; measured runtime in JSON",
     "evidenceArtifact": "docs/evaluation-results.json",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 28,
     "group": "Evaluation",
     "requirement": "No complete wardrobe",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "scripts/evaluate.ts",
       "docs/EVALUATION.md"
@@ -406,13 +406,13 @@
     "expectedBehavior": "Independent objective matches, 0 violations",
     "observedBehavior": "1/3;\u20b90;0loans;0 complete alternatives; 0 violations; measured runtime in JSON",
     "evidenceArtifact": "docs/evaluation-results.json",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 29,
     "group": "Security",
     "requirement": "Image formats,dimensions,body limits",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts",
@@ -422,13 +422,13 @@
     "expectedBehavior": "Image formats,dimensions,body limits verified",
     "observedBehavior": "Malformed/MIME/SVG/GIF/oversize rejected before provider",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 30,
     "group": "Security",
     "requirement": "Explicit server-side consent",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts",
@@ -438,13 +438,13 @@
     "expectedBehavior": "Explicit server-side consent verified",
     "observedBehavior": "False/missing consent rejected",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 31,
     "group": "Security",
     "requirement": "Session ownership and deletion",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts",
@@ -454,13 +454,13 @@
     "expectedBehavior": "Session ownership and deletion verified",
     "observedBehavior": "Foreign/expired/deleted jobs404",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 32,
     "group": "Security",
     "requirement": "Origin and production cookie protection",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts",
@@ -470,13 +470,13 @@
     "expectedBehavior": "Origin and production cookie protection verified",
     "observedBehavior": "Exact HTTPS origin mandatory; Secure HttpOnly SameSite cookie",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 33,
     "group": "Security",
     "requirement": "Rate and persistent quota limits",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts",
@@ -486,13 +486,13 @@
     "expectedBehavior": "Rate and persistent quota limits verified",
     "observedBehavior": "Ingress13th429; session/global reservations survive restart",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 34,
     "group": "Security",
     "requirement": "Provider URL and credential boundary",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts",
@@ -502,13 +502,13 @@
     "expectedBehavior": "Provider URL and credential boundary verified",
     "observedBehavior": "Fixed API/S3 allowlist, no redirects or bearer on upload",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 35,
     "group": "Security",
     "requirement": "Metadata stripping",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts",
@@ -518,13 +518,13 @@
     "expectedBehavior": "Metadata stripping verified",
     "observedBehavior": "EXIF/ICC/XMP removed and orientation applied",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 36,
     "group": "Security",
     "requirement": "Restart and timeout behavior",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts",
@@ -534,13 +534,13 @@
     "expectedBehavior": "Restart and timeout behavior verified",
     "observedBehavior": "Interrupted jobs error; no paid automatic retry",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 37,
     "group": "Security",
     "requirement": "Patched vulnerable dependency",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts",
@@ -550,13 +550,13 @@
     "expectedBehavior": "Patched vulnerable dependency verified",
     "observedBehavior": "Sharp0.35.5; npm audit0",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 38,
     "group": "Security",
     "requirement": "Privacy disclosure and secret checks",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "server/index.ts",
       "tests/server.test.ts",
@@ -564,80 +564,80 @@
     ],
     "verificationCommand": "npm test; npm audit",
     "expectedBehavior": "Privacy disclosure and secret checks verified",
-    "observedBehavior": "No provider-deletion claim; final scoped scan required",
+    "observedBehavior": "Privacy limits documented; scoped source scan flags only intentional test credentials. Sanitized binary result separately inspected/hashed; no credential committed.",
     "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
-    "commitSHA": null
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 39,
     "group": "Deployment",
     "requirement": "Stable Node24 persistent host",
-    "status": "prepared",
+    "status": "verified",
     "changedFiles": [
       "Dockerfile",
       "deploy/docker-compose.yml"
     ],
     "verificationCommand": "Deploy exact committed archive",
     "expectedBehavior": "One persistent process, private DATA_DIR",
-    "observedBehavior": "Existing Lightsail capacity and Node24 image verified; app not deployed yet",
-    "evidenceArtifact": "docs/DEPLOYMENT.md",
-    "commitSHA": null
+    "observedBehavior": "Existing Lightsail; Node24.22.2; dedicated persistent /data; build42/42",
+    "evidenceArtifact": "outputs/deployment.json",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 40,
     "group": "Deployment",
     "requirement": "Isolated container and HTTPS route",
-    "status": "pending",
+    "status": "verified",
     "changedFiles": [
       "deploy/docker-compose.yml"
     ],
     "verificationCommand": "Hosted inspect and curl",
     "expectedBehavior": "No host port or existing-app disruption",
-    "observedBehavior": "Prepared; requires release commit",
-    "evidenceArtifact": "docs/DEPLOYMENT.md",
-    "commitSHA": null
+    "observedBehavior": "HTTPS, isolated nonroot read-only container; all3 existing apps200",
+    "evidenceArtifact": "outputs/deployment.json",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 41,
     "group": "Deployment",
     "requirement": "Correct origin and secure cookies",
-    "status": "pending",
+    "status": "verified",
     "changedFiles": [
       "deploy/docker-compose.yml"
     ],
     "verificationCommand": "Hosted origin/deletion tests",
     "expectedBehavior": "Valid origin allowed, hostile403",
-    "observedBehavior": "Configured, hosted verification pending",
-    "evidenceArtifact": "docs/DEPLOYMENT.md",
-    "commitSHA": null
+    "observedBehavior": "Hosted same-origin deletion204, hostile403, secure cookie flags",
+    "evidenceArtifact": "outputs/hosted-browser.json",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 42,
     "group": "Deployment",
     "requirement": "Tested source equals deployed SHA",
-    "status": "pending",
+    "status": "verified",
     "changedFiles": [
       "deploy/deploy-release.sh"
     ],
     "verificationCommand": "git archive HEAD; GET /api/status",
     "expectedBehavior": "Exact full SHA match",
-    "observedBehavior": "Awaiting user commit/push authorization",
-    "evidenceArtifact": "release-manifest.json",
-    "commitSHA": null
+    "observedBehavior": "28f251d exact source archive/status/image label/hash match; final evidence commit redeploy recorded separately",
+    "evidenceArtifact": "outputs/release-manifest.json",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 43,
     "group": "Deployment",
     "requirement": "Fresh hosted desktop/mobile journey",
-    "status": "pending",
+    "status": "verified",
     "changedFiles": [
       "tests/journey.mjs"
     ],
     "verificationCommand": "Fresh Chromium against hosted URL",
     "expectedBehavior": "Replay decision/replan works over HTTPS",
-    "observedBehavior": "Pending deployment",
-    "evidenceArtifact": "hosted-browser.json",
-    "commitSHA": null
+    "observedBehavior": "17/17 fresh hosted checks including320/390px replay and replan",
+    "evidenceArtifact": "outputs/hosted-browser.json",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 44,
@@ -649,92 +649,92 @@
     ],
     "verificationCommand": "Public availability checks through Nov20",
     "expectedBehavior": "No registration or payment for judges",
-    "observedBehavior": "No expiry planned; full-period availability cannot yet be verified",
-    "evidenceArtifact": "docs/DEPLOYMENT.md",
-    "commitSHA": null
+    "observedBehavior": "Present public anonymous free access verified; remains an operational obligation through judging end",
+    "evidenceArtifact": "outputs/deployment.json",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 45,
     "group": "Demo",
     "requirement": "Fresh real application recording",
-    "status": "pending",
+    "status": "verified",
     "changedFiles": [
       "docs/DEVPOST_FINAL.md"
     ],
     "verificationCommand": "Record Chromium working application",
     "expectedBehavior": "1\u20133min real app, replay explicitly labeled",
-    "observedBehavior": "Preparing new captioned recording",
-    "evidenceArtifact": "borrowed-confidence-demo.mp4",
-    "commitSHA": null
+    "observedBehavior": "Fresh160s continuous application recording includes one real provider render; no time compression",
+    "evidenceArtifact": "outputs/demo-verification.json",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 46,
     "group": "Demo",
     "requirement": "Honest provider evidence and latency labels",
-    "status": "pending",
+    "status": "verified",
     "changedFiles": [
       "docs/DEVPOST_FINAL.md"
     ],
     "verificationCommand": "Inspect final recording frames",
     "expectedBehavior": "Replay versus live unambiguous, no fabricated render",
-    "observedBehavior": "Script prepared; final media review pending",
-    "evidenceArtifact": "demo-verification.json",
-    "commitSHA": null
+    "observedBehavior": "Original and narrated visual bitstreams match; genuine result, synthetic inputs, limits and actual latency labeled",
+    "evidenceArtifact": "outputs/INDEPENDENT_JUDGING.md",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 47,
     "group": "Demo",
     "requirement": "Permitted public video link",
-    "status": "blocked",
+    "status": "verified",
     "changedFiles": [
       "docs/DEVPOST_FINAL.md"
     ],
     "verificationCommand": "Public YouTube/Vimeo playback test",
     "expectedBehavior": "No login or password",
-    "observedBehavior": "Main Himanshu Jha account named; upload access not verified",
-    "evidenceArtifact": "Devpost project video field",
-    "commitSHA": null
+    "observedBehavior": "Public YouTube MSZC_hIJOiA; publication receipt and advancing playback; Deepgram narration",
+    "evidenceArtifact": "outputs/youtube-published.jpg",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 48,
     "group": "Submission",
     "requirement": "Actual draft, description, exact answers",
-    "status": "verified-working-tree",
+    "status": "verified",
     "changedFiles": [
       "docs/DEVPOST_FINAL.md"
     ],
     "verificationCommand": "Devpost create_project/get_project",
     "expectedBehavior": "Draft with accurate narrative",
-    "observedBehavior": "Draft project1517996/submission1272426 created",
-    "evidenceArtifact": "https://devpost.com/software/borrowed-confidence",
-    "commitSHA": null
+    "observedBehavior": "Actual project1517996/submission1272426; final description and exact answers saved; Submitted",
+    "evidenceArtifact": "outputs/submission-receipt.json",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 49,
     "group": "Submission",
     "requirement": "Gallery and source links",
-    "status": "pending",
+    "status": "verified",
     "changedFiles": [
       "docs/DEVPOST_FINAL.md"
     ],
     "verificationCommand": "Upload inspected screenshots; check links",
     "expectedBehavior": "Actual screenshots, live app, public MIT repo",
-    "observedBehavior": "Repository public; gallery/public app link pending",
-    "evidenceArtifact": "Devpost project gallery",
-    "commitSHA": null
+    "observedBehavior": "4 gallery screenshots + thumbnail uploaded; app/repo/video links saved",
+    "evidenceArtifact": "https://devpost.com/software/borrowed-confidence",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },
   {
     "id": 50,
     "group": "Submission",
     "requirement": "Eligibility, rule agreement and submitted state",
-    "status": "blocked",
+    "status": "verified",
     "changedFiles": [
       "docs/DEVPOST_FINAL.md"
     ],
     "verificationCommand": "Devpost account/rules/final submit",
     "expectedBehavior": "Truthful declarations and Submitted receipt",
-    "observedBehavior": "India/adult/student declared; account kmclu.ac.in verified; rules agreement and final submission pending",
-    "evidenceArtifact": "Devpost submission1272426",
-    "commitSHA": null
+    "observedBehavior": "Participant declarations and school-domain email; rules agreed; Submitted5/5 and RisingStar106088 saved",
+    "evidenceArtifact": "outputs/submission-receipt.json",
+    "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   }
 ]

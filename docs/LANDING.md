@@ -1,3 +1,9 @@
+# Finalization update — October 30, 2026
+
+The primary action now opens the working planner immediately. The 62-second modal is retained as an explicitly historical walkthrough. The connected studio supports exact garment/event context, genuine historical before/after replay, acceptance/rejection and actual replanning. Pine/editorial styling is preserved, with measured contrast fixes. The final narrated160-second judging video is https://www.youtube.com/watch?v=MSZC_hIJOiA and shows a fresh real authorized request through the updated UI. Public rendering stays disabled to bound costs.
+
+The original design/media record follows; historical wording about primary CTA predates this finalization.
+
 # Landing page and media notes
 
 ## Direction

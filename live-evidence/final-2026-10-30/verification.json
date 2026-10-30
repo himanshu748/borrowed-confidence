@@ -1,0 +1,51 @@
+{
+  "provider": "YouCam",
+  "endpoint": "cloth-v4",
+  "category": "outer",
+  "filterMultiPerson": "strict",
+  "syntheticInputs": true,
+  "realProviderResult": true,
+  "newRender": true,
+  "paidTaskAttempts": 1,
+  "automaticPaidRetries": 0,
+  "listedUnitsPerResult": 2,
+  "startedAt": "2026-10-30T10:42:35.847Z",
+  "elapsedSeconds": 17.62,
+  "width": 1792,
+  "height": 2400,
+  "resultFile": "live-evidence/final-2026-10-30/youcam-result.jpg",
+  "sourceRevision": "28f251de93499a773cdc4ea1acca55147a411452",
+  "environment": "Private local UI using actual Express server and provider adapter; public deployment remains replay-only",
+  "planBefore": {
+    "coverage": 3,
+    "spendINR": 0,
+    "loans": 1
+  },
+  "planAfterRejection": {
+    "coverage": 3,
+    "spendINR": 850,
+    "loans": 0
+  },
+  "budget500Coverage": 2,
+  "resultSha256": "251f125d6036a5f085bd1810025c65bcae28225373fdee93c13ab73c23ff17d0",
+  "sourceFile": "live-evidence/outer-test/synthetic-person.jpg",
+  "referenceFile": "live-evidence/outer-test/synthetic-blazer.jpg",
+  "sourceSha256": "6b7eabb84cd0c3176f402337001f2f92868089477224026345486e7b85665ef7",
+  "referenceSha256": "026ca1c3b4c0fc1048388982268c9bcffaf9d1ecbe330650b2872b682aa3e6cc",
+  "observedUnitsConsumed": 2.0,
+  "visualReview": {
+    "shirtVisibleUnderBlazer": true,
+    "chestCovered": true,
+    "trousersVisuallyConsistent": true,
+    "shoesVisuallyConsistent": true,
+    "physicalFitVerified": false,
+    "exactGarmentFidelityVerified": false
+  },
+  "planWithBudget500": {
+    "coverage": 2,
+    "spendINR": 0,
+    "loans": 1,
+    "feasible": false,
+    "evidence": "05-budget-gap.png in the mission outputs/live-demo recording artifacts; independently checked against the unchanged deterministic solver"
+  }
+}
