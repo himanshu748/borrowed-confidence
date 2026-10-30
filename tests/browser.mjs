@@ -12,10 +12,11 @@ mkdirSync('test-results',{recursive:true});
 try{
  const desktop=await browser.newPage({viewport:{width:1440,height:1000}});
  await desktop.goto(base);await expect(desktop.getByRole('heading',{level:1})).toContainText('Big opportunity');
- await desktop.getByRole('button',{name:'Watch the walkthrough 1:02',exact:true}).first().click();
+ await desktop.getByRole('button',{name:'Watch the walkthrough 2:40',exact:true}).first().click();
  await expect(desktop.locator('dialog')).toBeVisible();
  await expect.poll(()=>desktop.locator('video').evaluate(v=>v.readyState)).toBe(4);
  await expect.poll(()=>desktop.locator('video').evaluate(v=>v.currentTime)).toBeGreaterThan(0);
+ await expect.poll(()=>desktop.locator('video').evaluate(v=>v.captureStream().getAudioTracks().length)).toBe(1);
  await desktop.getByRole('button',{name:'Close walkthrough'}).click();
  await expect(desktop.locator('dialog')).not.toBeVisible();
  await desktop.getByRole('button',{name:'Navy blazer available',exact:false}).click();
@@ -26,7 +27,7 @@ try{
  await expect(desktop.getByRole('heading',{name:'What’s coming up?'})).toBeVisible();
  await desktop.getByRole('button',{name:'← Home',exact:true}).click();
  await expect(desktop.getByRole('heading',{level:1})).toContainText('Big opportunity');
- console.log('Desktop: video playback, close/focus path, stockout, budget gap and full-planner navigation passed.');
+ console.log('Desktop: narrated video playback with1 actual audio track, close/focus path, stockout, budget gap and full-planner navigation passed.');
  const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
  await mobile.goto(base);
  await expect(mobile.getByRole('button',{name:'Menu +'})).toBeVisible();
@@ -40,7 +41,7 @@ try{
  await expect(mobile.locator('.lp-demo-stats')).toContainText('₹850');
  await mobile.evaluate(()=>window.scrollTo(0,0));
  await mobile.screenshot({path:'test-results/landing-mobile.png',fullPage:true});
- await mobile.getByRole('button',{name:'Watch the walkthrough 1:02',exact:true}).first().click();
+ await mobile.getByRole('button',{name:'Watch the walkthrough 2:40',exact:true}).first().click();
  await expect(mobile.locator('dialog')).toBeVisible();
  dims=await overflow();if(dims.scroll>dims.width)throw new Error('Mobile modal overflow '+JSON.stringify(dims));
  await mobile.getByRole('button',{name:'Close walkthrough'}).click();

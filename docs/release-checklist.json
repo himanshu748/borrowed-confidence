@@ -621,7 +621,7 @@
     ],
     "verificationCommand": "git archive HEAD; GET /api/status",
     "expectedBehavior": "Exact full SHA match",
-    "observedBehavior": "28f251d exact source archive/status/image label/hash match; final evidence commit redeploy recorded separately",
+    "observedBehavior": "28f251d exact source archive/status/image label/hash match; final release redeploy recorded separately",
     "evidenceArtifact": "outputs/release-manifest.json",
     "commitSHA": "28f251de93499a773cdc4ea1acca55147a411452"
   },

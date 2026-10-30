@@ -6,7 +6,7 @@ A student interview-week wardrobe planner combining owned, borrowed and purchase
 
 ## Landing page
 
-The root opens the premium campus-editorial landing page. Its primary CTA opens the working planner. The secondary 62-second historical walkthrough is labeled as predating the provider tests. A live sample uses the same planner engine for availability and budget changes. The full planner is accessible at #planner. See docs/LANDING.md for media provenance and photography licensing.
+The root opens the premium campus-editorial landing page. Its primary CTA opens the working planner. The secondary walkthrough opens the fresh narrated160-second demo, including a real authorized YouCam request and connected replanning. The original62-second recording remains preserved in the historical media bundle. A live sample uses the same planner engine for availability and budget changes. The full planner is accessible at #planner. See docs/LANDING.md for media provenance and photography licensing.
 
 ## What works now
 

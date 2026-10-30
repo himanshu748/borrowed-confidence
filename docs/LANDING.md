@@ -1,3 +1,7 @@
+# Active demo update — October30,2026
+
+The active native video modal now uses src/media/final-demo.mp4: the fresh160-second continuous application recording with Deepgram narration and English captions. It includes the actual authorized October30 YouCam request, visual comparison, rejection/recalculation and budget gap. The recording identifies private local live execution versus public historical replay. The old src/media/walkthrough.mp4 and its checksummed bundle remain preserved as historical evidence. Video loading remains preload=none; playback never starts a provider request. Keyboard dialog closure/focus and mobile playback are regression checked with the new asset.
+
 # Finalization update — October 30, 2026
 
 The primary action now opens the working planner immediately. The 62-second modal is retained as an explicitly historical walkthrough. The connected studio supports exact garment/event context, genuine historical before/after replay, acceptance/rejection and actual replanning. Pine/editorial styling is preserved, with measured contrast fixes. The final narrated160-second judging video is https://www.youtube.com/watch?v=MSZC_hIJOiA and shows a fresh real authorized request through the updated UI. Public rendering stays disabled to bound costs.

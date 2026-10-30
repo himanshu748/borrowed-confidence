@@ -1,6 +1,6 @@
 # Fifty release requirements — observed final status
 
-49 verified; 1 ongoing obligation:availability through the end of judging. Verified means exercised, not a guarantee of future behavior. The machine-readable records include files,command,expected/observed behavior,evidence and the application revision used for verification. The delivered output copy also records the final packaged/deployed SHA. Live footage was captured at28f251d; final evidence-only commit preserves identical application sources.
+49 verified; 1 ongoing obligation:availability through the end of judging. Verified means exercised, not a guarantee of future behavior. The machine-readable records include files,command,expected/observed behavior,evidence and the application revision used for verification. The delivered output copy also records the final packaged/deployed SHA. Live footage was captured at28f251d; final release preserves identical planner/studio/server sources and activates the narrated landing video.
 
 |ID|Group|Requirement|Status|Evidence|
 |---|---|---|---|---|
