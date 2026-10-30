@@ -1,0 +1,19 @@
+.git
+node_modules
+dist
+data
+.data
+.env
+.env.*
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+preview.html
+playwright-report
+test-results
+work
+outputs
+**/*.pem
+**/*-key
+**/*-cert.pub
+# The checksummed .asset-pack is required and deliberately included.

@@ -4,6 +4,7 @@ import type { AddressInfo } from 'node:net';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { DatabaseSync } from 'node:sqlite';
 import sharp from 'sharp';
 import { createApp, type AppOptions } from '../server/index.js';
 import { YouCam, safeProviderUrl, type Fetch } from '../server/youcam.js';
@@ -16,7 +17,7 @@ const png = await sharp({ create: { width: 512, height: 384, channels: 3, backgr
 const dataURL = `data:image/png;base64,${png.toString('base64')}`;
 const valid = { personImage: dataURL, garmentImage: dataURL, category: 'upper_body', consent: true };
 
-function providerFetch(options: { unsafeUpload?: string; unsafeOutput?: string; fail?: boolean; waiting?: boolean } = {}) {
+function providerFetch(options: { unsafeUpload?: string; unsafeOutput?: string; fail?: boolean; waiting?: boolean; uploadHeaders?: Record<string, string> } = {}) {
   const calls: Array<{ url: string; init?: RequestInit }> = [];
   let fileCount = 0;
   const fetcher: Fetch = async (url, init) => {
@@ -24,7 +25,7 @@ function providerFetch(options: { unsafeUpload?: string; unsafeOutput?: string; 
     if (options.fail) return json({ error: 'upstream-sensitive-error' }, 401);
     if (String(url).endsWith('/file')) return json({ data: { files: [{ file_id: `file-${++fileCount}`, requests: [{
       url: options.unsafeUpload ?? `https://yce-us.s3-accelerate.amazonaws.com/upload-${fileCount}`,
-      method: 'PUT', headers: { 'Content-Type': 'image/jpeg', 'x-amz-meta-test': 'preserved' }
+      method: 'PUT', headers: options.uploadHeaders ?? { 'Content-Type': 'image/jpeg', 'x-amz-meta-test': 'preserved' }
     }] }] } });
     if (init?.method === 'PUT') return new Response(null, { status: 200 });
     if (init?.method === 'POST') return json({ data: { task_id: 'task-id' } });
@@ -78,6 +79,37 @@ test('both live gates are required', async () => {
   }
 });
 
+test('public status exposes only a validated release SHA and no server secrets', async () => {
+  const revision = 'f686cfd077a51a67fad1cd2312a5f5f4928b3758';
+  for (const RELEASE_SHA of [revision, 'not-a-sha-secret', '../private/.env', 'a'.repeat(41)]) {
+    const server = await start({ env: { YOUCAM_API_KEY: 'test-secret-not-a-real-key', RELEASE_SHA } });
+    try {
+      const status = await (await server.request('/api/status')).json();
+      assert.equal(status.revision, RELEASE_SHA === revision ? revision : undefined);
+      assert.doesNotMatch(JSON.stringify(status), /test-secret|not-a-sha-secret|private/);
+    } finally { await server.close(); }
+  }
+});
+
+test('production trust boundary and spending configuration fail closed', async () => {
+  for (const APP_ORIGIN of [undefined, '', 'http://example.com', 'https://example.com/', 'https://example.com/path', 'https://user@example.com', 'https://example.com?query=1']) {
+    assert.throws(() => createApp({ env: { NODE_ENV: 'production', APP_ORIGIN }, dbPath: ':memory:' }), /exact HTTPS origin/);
+  }
+  for (const MAX_LIVE_JOBS_PER_DAY of ['', '0', '-1', '1.5', 'not-a-number', 'Infinity']) {
+    assert.throws(() => createApp({ env: { MAX_LIVE_JOBS_PER_DAY }, dbPath: ':memory:' }), /positive integer/);
+  }
+  const server = await start({ env: { ...liveEnv, NODE_ENV: 'production', APP_ORIGIN: 'https://app.example' }, fetch: providerFetch().fetcher });
+  try {
+    assert.equal((await server.request('/api/tryons', post())).status, 403);
+    const response = await server.request('/api/tryons', post(valid, undefined, 'https://app.example'));
+    assert.equal(response.status, 202);
+    assert.match(response.headers.get('set-cookie')!, /; Secure/i);
+    assert.equal(response.headers.get('cache-control'), 'no-store');
+    assert.equal(response.headers.get('referrer-policy'), 'no-referrer');
+    assert.equal(response.headers.get('x-frame-options'), 'DENY');
+  } finally { await server.close(); }
+});
+
 test('writes require exact trusted Origin before parsing the body', async () => {
   const server = await start({ env: liveEnv });
   try {
@@ -86,6 +118,54 @@ test('writes require exact trusted Origin before parsing the body', async () => 
       assert.equal((await server.request('/api/session', { method: 'DELETE', headers: { Origin: requestOrigin } })).status, 403);
     }
     assert.equal((await server.request('/api/session', { method: 'DELETE' })).status, 403);
+    assert.equal((await server.request('/api/tryons', {
+      ...post(), headers: { ...post().headers, 'Sec-Fetch-Site': 'cross-site' }
+    })).status, 403);
+  } finally { await server.close(); }
+});
+
+test('unsupported formats, oversized dimensions and malformed encodings never reach provider', async () => {
+  const { fetcher, calls } = providerFetch();
+  const server = await start({ env: liveEnv, fetch: fetcher });
+  try {
+    const oversized = await sharp({ create: { width: 4097, height: 384, channels: 3, background: '#fff' } }).png().toBuffer();
+    const narrow = await sharp({ create: { width: 512, height: 383, channels: 3, background: '#fff' } }).png().toBuffer();
+    const gif = await sharp(png).gif().toBuffer();
+    const svg = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384"><rect width="100%" height="100%"/></svg>');
+    for (const personImage of [
+      'data:image/png;base64,' + oversized.toString('base64'),
+      'data:image/png;base64,' + narrow.toString('base64'),
+      'data:image/gif;base64,' + gif.toString('base64'),
+      'data:image/png;base64,' + gif.toString('base64'),
+      'data:image/svg+xml;base64,' + svg.toString('base64'),
+      'data:image/png;base64,' + svg.toString('base64'),
+      dataURL + '=', 'data:image/png;base64,%%%'
+    ]) assert.equal((await server.request('/api/tryons', post({ ...valid, personImage }))).status, 400);
+    assert.equal(calls.length, 0);
+  } finally { await server.close(); }
+});
+
+test('decoded images are rotated and metadata is stripped before either upload', async () => {
+  const { fetcher, calls } = providerFetch();
+  const server = await start({ env: liveEnv, fetch: fetcher });
+  try {
+    const tagged = await sharp(png).jpeg().withMetadata({ orientation: 6 }).toBuffer();
+    assert.ok((await sharp(tagged).metadata()).exif);
+    const image = 'data:image/jpeg;base64,' + tagged.toString('base64');
+    const response = await server.request('/api/tryons', post({ ...valid, personImage: image, garmentImage: image }));
+    const cookie = response.headers.get('set-cookie')!.split(';')[0]!;
+    const queued = await response.json();
+    assert.equal((await poll(server, queued.id, cookie)).state, 'success');
+    for (const upload of calls.filter(call => call.init?.method === 'PUT')) {
+      const metadata = await sharp(Buffer.from(upload.init!.body as Uint8Array)).metadata();
+      assert.equal(metadata.format, 'jpeg');
+      assert.equal(metadata.width, 384);
+      assert.equal(metadata.height, 512);
+      assert.equal(metadata.exif, undefined);
+      assert.equal(metadata.icc, undefined);
+      assert.equal(metadata.xmp, undefined);
+      assert.equal(metadata.orientation, undefined);
+    }
   } finally { await server.close(); }
 });
 
@@ -161,6 +241,23 @@ test('provider upload and result URLs reject SSRF, credentials and redirects', a
   }
 });
 
+test('provider credential headers and oversized or malformed responses fail safely', async () => {
+  const image = { bytes: png, mime: 'image/png' as const, name: 'test.png' };
+  for (const header of ['Authorization', 'Proxy-Authorization', 'Cookie', 'Host', 'Transfer-Encoding', 'Connection']) {
+    const fixture = providerFetch({ uploadHeaders: { [header]: 'sensitive-provider-value' } });
+    const provider = new YouCam({ apiKey: 'test-secret-not-a-real-key', fetch: fixture.fetcher });
+    await assert.rejects(provider.render(image, image, 'outer', () => {}, new AbortController().signal), /unsafe upload headers/);
+    assert.equal(fixture.calls.length, 1);
+    assert.equal(fixture.calls.some(call => call.init?.method === 'PUT'), false);
+  }
+  for (const body of ['invalid-json-secret', 'x'.repeat(256 * 1024 + 1)]) {
+    let calls = 0;
+    const provider = new YouCam({ apiKey: 'test', fetch: async () => { calls++; return new Response(body); } });
+    await assert.rejects(provider.render(image, image, 'outer', () => {}, new AbortController().signal), /invalid response/);
+    assert.equal(calls, 1);
+  }
+});
+
 test('provider failures expose a safe error rather than credentials or upstream text', async () => {
   const { fetcher } = providerFetch({ fail: true });
   const server = await start({ env: liveEnv, fetch: fetcher });
@@ -198,6 +295,32 @@ test('per-session quota rejects further jobs while allowing another session', as
   } finally { await server.close(); }
 });
 
+test('ingress rate limit bounds even invalid submissions and advertises retry delay', async () => {
+  const { fetcher, calls } = providerFetch();
+  const server = await start({ env: liveEnv, fetch: fetcher });
+  try {
+    for (let attempt = 0; attempt < 12; attempt++) {
+      assert.equal((await server.request('/api/tryons', post({ ...valid, consent: false }))).status, 400);
+    }
+    const limited = await server.request('/api/tryons', post());
+    assert.equal(limited.status, 429);
+    assert.equal(limited.headers.get('retry-after'), '60');
+    assert.equal(calls.length, 0);
+  } finally { await server.close(); }
+});
+
+test('input byte and HTTP body limits reject oversized uploads before provider traffic', async () => {
+  const { fetcher, calls } = providerFetch();
+  const server = await start({ env: liveEnv, fetch: fetcher });
+  try {
+    const image = 'data:image/png;base64,' + Buffer.alloc(8 * 1024 * 1024 + 1).toString('base64');
+    assert.equal((await server.request('/api/tryons', post({ ...valid, personImage: image }))).status, 400);
+    const response = await server.request('/api/tryons', post({ padding: 'a'.repeat(24 * 1024 * 1024) }));
+    assert.equal(response.status, 413);
+    assert.equal(calls.length, 0);
+  } finally { await server.close(); }
+});
+
 test('persistent metadata survives restart with session ownership', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'spindle-test-'));
   const dbPath = join(directory, 'metadata.sqlite');
@@ -214,6 +337,88 @@ test('persistent metadata survives restart with session ownership', async () => 
     assert.equal(job.state, 'success');
     assert.equal(job.resultUrl, output);
   } finally { await server.close(); await rm(directory, { recursive: true, force: true }); }
+});
+
+test('restart marks interrupted work failed without retrying or refunding quota', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'spindle-restart-'));
+  const dbPath = join(directory, 'metadata.sqlite');
+  const { fetcher, calls } = providerFetch({ waiting: true });
+  let server = await start({ env: liveEnv, fetch: fetcher, dbPath, dailyCap: 1, pollIntervalMs: 10_000 });
+  try {
+    const response = await server.request('/api/tryons', post());
+    const cookie = response.headers.get('set-cookie')!.split(';')[0]!;
+    const queued = await response.json();
+    await server.close();
+    const callsBeforeRestart = calls.length;
+    const db = new DatabaseSync(dbPath);
+    const storedSession = db.prepare('SELECT id FROM sessions').get() as { id: string };
+    assert.notEqual(storedSession.id, cookie.split('=')[1]);
+    assert.match(storedSession.id, /^[a-f0-9]{64}$/);
+    db.close();
+    server = await start({ env: liveEnv, fetch: fetcher, dbPath, dailyCap: 1 });
+    const job = await (await server.request(`/api/tryons/${queued.id}`, { headers: { Cookie: cookie } })).json();
+    assert.equal(job.state, 'error');
+    assert.match(job.error, /server restarted/);
+    assert.equal(job.resultUrl, undefined);
+    assert.equal((await server.request('/api/tryons', post())).status, 429);
+    assert.equal(calls.length, callsBeforeRestart);
+  } finally { await server.close(); await rm(directory, { recursive: true, force: true }); }
+});
+
+test('expired jobs and expired sessions lose access immediately', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'spindle-expiry-'));
+  const dbPath = join(directory, 'metadata.sqlite');
+  const server = await start({ env: liveEnv, fetch: providerFetch().fetcher, dbPath });
+  try {
+    const response = await server.request('/api/tryons', post());
+    const cookie = response.headers.get('set-cookie')!.split(';')[0]!;
+    const queued = await response.json();
+    await poll(server, queued.id, cookie);
+    const db = new DatabaseSync(dbPath);
+    const expired = Date.now() - 25 * 60 * 60 * 1000;
+    db.prepare('UPDATE jobs SET created_at=? WHERE id=?').run(expired, queued.id);
+    assert.equal((await server.request(`/api/tryons/${queued.id}`, { headers: { Cookie: cookie } })).status, 404);
+    db.prepare('UPDATE jobs SET created_at=? WHERE id=?').run(Date.now(), queued.id);
+    db.prepare('UPDATE sessions SET created_at=?').run(expired);
+    assert.equal((await server.request(`/api/tryons/${queued.id}`, { headers: { Cookie: cookie } })).status, 404);
+    db.close();
+  } finally { await server.close(); await rm(directory, { recursive: true, force: true }); }
+});
+
+test('provider timeout ends polling and never automatically recreates a paid task', async () => {
+  const { fetcher, calls } = providerFetch({ waiting: true });
+  const server = await start({ env: liveEnv, fetch: fetcher, providerTimeoutMs: 30, pollIntervalMs: 1 });
+  try {
+    const response = await server.request('/api/tryons', post());
+    const cookie = response.headers.get('set-cookie')!.split(';')[0]!;
+    const queued = await response.json();
+    const job = await poll(server, queued.id, cookie);
+    assert.equal(job.state, 'error');
+    assert.match(job.error, /cancelled or timed out/);
+    assert.equal(calls.filter(c => c.init?.method === 'POST' && c.url.endsWith('/task/cloth-v4')).length, 1);
+  } finally { await server.close(); }
+});
+
+test('provider throttling is safe and does not retry a billable POST', async () => {
+  const fixture = providerFetch();
+  let tasks = 0;
+  const fetcher: Fetch = async (url, init) => {
+    if (init?.method === 'POST' && String(url).endsWith('/task/cloth-v4')) {
+      tasks++;
+      return json({ error: 'secret-signed-url-or-account-information' }, 429);
+    }
+    return fixture.fetcher(url, init);
+  };
+  const server = await start({ env: liveEnv, fetch: fetcher });
+  try {
+    const response = await server.request('/api/tryons', post());
+    const cookie = response.headers.get('set-cookie')!.split(';')[0]!;
+    const queued = await response.json();
+    const job = await poll(server, queued.id, cookie);
+    assert.equal(job.state, 'error');
+    assert.doesNotMatch(JSON.stringify(job), /secret-signed|test-secret/);
+    assert.equal(tasks, 1);
+  } finally { await server.close(); }
 });
 
 test('background polling can be cancelled without holding submit HTTP open', async () => {

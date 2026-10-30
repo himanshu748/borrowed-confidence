@@ -1,0 +1,33 @@
+services:
+  app:
+    image: borrowed-confidence:${RELEASE_SHA:?Set the full tested commit SHA}
+    container_name: bc-api
+    restart: unless-stopped
+    init: true
+    user: "1000:1000"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 0.50
+    mem_limit: 512m
+    memswap_limit: 512m
+    pids_limit: 128
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m,mode=1777
+    environment:
+      NODE_ENV: production
+      PORT: "3001"
+      DATA_DIR: /data
+      APP_ORIGIN: https://borrowed-confidence.52.202.25.181.sslip.io
+      COOKIE_SECURE: "true"
+      ALLOW_LIVE_TRYON: "false"
+      MAX_LIVE_JOBS_PER_DAY: "1"
+      RELEASE_SHA: ${RELEASE_SHA:?Set the full tested commit SHA}
+    volumes:
+      - /opt/borrowed-confidence/data:/data
+    expose: ["3001"]
+    networks: [app]
+
+networks:
+  app:
+    name: borrowed-confidence-net

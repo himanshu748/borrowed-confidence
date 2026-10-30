@@ -2,11 +2,11 @@
 
 Dress for the opportunity. Not the shopping cart.
 
-A student interview-week wardrobe planner combining owned, borrowed and purchase-option clothing. The deterministic planner considers dates, availability, selected size group, borrowing limits and budget. A separate studio integrates real YouCam Clothes Virtual Try-On through a server-side adapter.
+A student interview-week wardrobe planner combining owned, borrowed and purchase-option clothing. The deterministic planner considers dates, availability, selected size group, borrowing limits and budget. The connected YouCam studio carries a garment and event from the plan into visual inspection. Accept keeps the candidate; reject excludes it across all events and recalculates coverage, spending and borrowing.
 
 ## Landing page
 
-The root opens the premium campus-editorial landing page. Its primary CTA plays a real 62-second captioned product walkthrough. A live sample uses the same planner engine for availability and budget changes. The full planner is accessible at #planner. See docs/LANDING.md for media provenance and photography licensing.
+The root opens the premium campus-editorial landing page. Its primary CTA opens the working planner. The secondary 62-second historical walkthrough is labeled as predating the provider tests. A live sample uses the same planner engine for availability and budget changes. The full planner is accessible at #planner. See docs/LANDING.md for media provenance and photography licensing.
 
 ## What works now
 
@@ -24,7 +24,7 @@ The root opens the premium campus-editorial landing page. Its primary CTA plays 
 
 ## What is deliberately not claimed
 
-This is a functional prototype, not a production service or a submission-ready entry. Two real YouCam cloth-v4 requests using synthetic inputs completed successfully on October 25, 2026. The initial upper_body request replaced the shirt. The second used the documented outer category and visually retained a white shirt underneath the added blazer, with trousers and shoes consistent. It took about 29 seconds and consumed 2 API units. These are two smoke tests, not broad compatibility or quality validation. See docs/LIVE_TEST.md and docs/OUTER_TEST.md. Inventory is sample data, not university stock. Prices are illustrative. Nothing is reserved or purchased. Physical fit is not inferred. The planning-board illustrations are original SVG schematics, not photographs or YouCam outputs. Skin Analysis is not used.
+This is a functional hackathon prototype with explicit release gates, not a production service. The public deployment defaults to a labeled replay of genuine provider evidence; it does not generate a new result for uploaded visitor photos. Two real YouCam cloth-v4 requests using synthetic inputs completed successfully on October 25, 2026. The initial upper_body request replaced the shirt. The second used the documented outer category and visually retained a white shirt underneath the added blazer, with trousers and shoes consistent. It took about 29 seconds and consumed 2 API units. These are two smoke tests, not broad compatibility or quality validation. See docs/LIVE_TEST.md and docs/OUTER_TEST.md. Inventory is sample data, not university stock. Prices are illustrative. Nothing is reserved or purchased. Physical fit is not inferred. The planning-board illustrations are original SVG schematics, not photographs or YouCam outputs. Skin Analysis is not used.
 
 Wardrobe edits, event details and uploaded photos stay in browser memory and reset on page refresh. Source image bytes are not persisted by the server. Job metadata persists for up to 24 hours. See docs/SECURITY.md for exact privacy and retention boundaries.
 
@@ -59,7 +59,7 @@ The automated suite covers planner invariants, partial feasibility, stockouts, s
 ```sh
 npm ci
 npm run build
-NODE_ENV=production npm start
+APP_ORIGIN=https://your-host.example COOKIE_SECURE=true DATA_DIR=/private/persistent/data NODE_ENV=production npm start
 ```
 
 Set APP_ORIGIN to the exact external HTTPS origin with no trailing slash. Set COOKIE_SECURE=true. Set DATA_DIR to private persistent storage. Set PORT to the host's assigned listener port. Use one process with this SQLite-backed in-memory render queue. Do not deploy the queue to a stateless request-only function host as-is.
@@ -104,17 +104,27 @@ One borrowed item has one continuous loan period beginning on its first selected
 - YouCam Clothes API: https://docs.perfectcorp.com/reference/ai_clothes
 - Existing lending workflow example, not a partner: https://careers.college.indiana.edu/about/explore-our-center/crimson-closet/index.html
 
-## Optional browser checks
-
-The browser regression script is separate from the unit and HTTP suite. It uses Playwright and a local headless Chromium build:
+## Browser checks and reproducible evaluation
 
 ```sh
-npm install --no-save --package-lock=false @sparticuz/chromium
+npx playwright install chromium
 npm run build
-node --import tsx tests/browser.mjs
+npm run test:browser
+npm run evaluate
 ```
 
-It checks playback, dialog closure, the interactive stockout and budget controls, navigation and mobile layouts. The extra Chromium dependency is a testing convenience, not a production dependency.
+Chromium checks cover the existing landing/video, connected item/event context, genuine replay comparison, acceptance/rejection and actual replanning, mobile widths, keyboard/reduced motion, stale-context invalidation, and separately labeled HTTP-fixture progress/error behavior. No browser test spends provider units. The evaluation preserves the original fixture with explicit deltas and independent constraint/objective enumeration; see docs/EVALUATION.md.
+
+## Finalization evidence
+
+- FINALIZATION_STATUS.md: release status and blockers
+- docs/DEVPOST_FINAL.md: current submission narrative and exact form answers
+- docs/SECURITY_FINALIZATION.md: security review and 24 route/provider checks
+- docs/JUDGING_REVIEW.md: independent product/design review with limitations
+- docs/DEPLOYMENT.md: isolated persistent-container deployment and recovery
+- docs/RELEASE_CHECKLIST.md: 50 release requirements and evidence pointers
+
+Use Node 24. On a machine with a global libvips installation, `SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm ci` selects Sharp's bundled binaries. This environment-specific repair does not change production behavior.
 
 ## Next gates before submission
 

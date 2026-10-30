@@ -1,0 +1,51 @@
+# Finalization status
+
+Audit started 2026-10-30. Source baseline: `f686cfd077a51a67fad1cd2312a5f5f4928b3758`; fresh clone, clean working tree. Historical evidence is preserved unchanged.
+
+## Verified by inspection
+
+- Existing deterministic solver, React planner, consented server adapter, SQLite job ownership and quota ledger exist.
+- Both October 25 provider reports and checksummed synthetic input/output assets are present. These are historical smoke tests, not new renders or human validation.
+- Existing planner-to-studio action loses garment/event context; studio has no decision tied to the actual planner. This is the highest-impact implementation gap for Technology and Design.
+- Root navigation unmounts the planner and loses edits. This needs repair.
+- Deployment is not evidenced. Queue requires a stable single Node 24 process and persistent private disk; ordinary stateless functions are unsuitable.
+- The 62-second walkthrough predates both live API tests and cannot serve as final integration evidence.
+
+## Initial verification
+
+`npm ci` failed because machine-global libvips triggered a Sharp source build; retrying with `SHARP_IGNORE_GLOBAL_LIBVIPS=1` and Node 24.22.1. Test and build outcomes will be recorded after they actually run. No claim of baseline test success is made yet.
+
+## Work in progress
+
+1. Connect actual outfit item/event selection to inspection and accept/reject replanning; show coverage, spending and borrowing deltas.
+2. Provide a clearly labeled replay of the genuine outer-category result, with synthetic-input provenance. No automatic provider calls.
+3. Reproduce seven planning scenarios; independently verify constraints and alternative counts.
+4. Independently review and test security, configuration, restart behavior and current provider contract.
+5. Verify desktop/mobile, keyboard and reduced motion in Chromium; prepare container and hosted smoke checks.
+
+## Exact external release gates
+
+- A no-new-cost authorized persistent host has not been identified. No billable resources may be created without approval.
+- New YouCam rendering units are not authorized. Existing historical provider evidence may be replayed with explicit labels.
+- A new 1–3 minute public YouTube/Vimeo video is missing. Recording, publishing access and final verification are required.
+- Devpost final fields, gallery, project entry and submitted state are not verified. Account declarations and rules/eligibility agreement require truthful user confirmation.
+- Current student enrollment and valid school-issued email are unverified; Rising Star eligibility cannot be claimed.
+- No actual student usability research or real stock integration exists. Fictional fixtures remain visibly labeled.
+
+See the release checklist and final evidence report as they are completed. Unchecked/blocked requirements must remain visible.
+
+## Verified release-candidate progress (October 30)
+
+- Clean Node24 install succeeded with the documented Sharp global-libvips bypass.
+- Original baseline:31 tests/build passed. Updated candidate:42 tests, strict build, both browser suites passed.
+- Exact garment/event context, genuine historical replay, keyboard comparison, acceptance, rejectedIds replanning and before/after metrics are implemented and browser verified.
+- Home navigation preserves plan state. Context edits invalidate stale inspections. Photo reads and session deletion have tested race guards.
+- Sharp upgraded to0.35.5; native signature checks and production configuration fail-closed behavior added. npm audit reports0 known vulnerabilities.
+- Seven evaluation scenarios pass independent exhaustive enumeration and final-state constraint checks. See docs/EVALUATION.md.
+- Independent review:Design4/5, Impact3/5, Idea4/5; backend Technology3.5/5 provisional before hosted verification. Automated accessibility scan detects0 violations;18 incomplete checks remain manual-review limits.
+- Devpost draft project1517996 and submission1272426 created, still Draft. Current description:docs/DEVPOST_FINAL.md.
+- Participant confirmed individual/India/age majority/current enrollment, school-issued Devpost email and rules agreement. Connected account domain kmclu.ac.in verified. No documentary enrollment verification was performed.
+- User explicitly authorized commit,push,deployment and final submission after verification.
+- Main YouTube channel access is available. Fresh160-second real application recording captured locally with0 rendering POSTs; final hosted/live-evidence recording remains in progress.
+- Existing YouCam account login and sufficient bonus credit availability verified; auto-refill remains off. One new render is authorized after current price verification. Existing key is held privately, not in source; secure server configuration is in progress. No new render has been run yet.
+- Container/HTTPS deployment is prepared for existing Lightsail host; no new AWS resources purchased. Final SHA and hosted checks are pending execution.

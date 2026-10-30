@@ -36,6 +36,11 @@ async function validateImage(data: string, name: string): Promise<UploadImage> {
   if (!bytes.length || bytes.length > MAX_IMAGE_BYTES || bytes.toString('base64') !== match[2]) {
     throw new Error('Each image must be a valid JPEG or PNG smaller than 8 MB.');
   }
+  // Reject disguised SVG/PDF/HEIF before native metadata parsing, not only after it.
+  const signatureMatches = match[1] === 'image/png'
+    ? bytes.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))
+    : bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff;
+  if (!signatureMatches) throw new Error('Use a readable JPEG or PNG whose contents match its format.');
   try {
     const image = sharp(bytes, { limitInputPixels: 4096 * 4096, failOn: 'warning', animated: false });
     const meta = await image.metadata();
@@ -54,12 +59,27 @@ async function validateImage(data: string, name: string): Promise<UploadImage> {
 export function createApp(options: AppOptions = {}) {
   const env = options.env ?? process.env;
   const production = env.NODE_ENV === 'production';
+  // Production must never derive its trust boundary from a caller-controlled Host.
+  // Validate before opening SQLite or starting workers so bad deploys fail closed.
+  if (production) {
+    let origin: URL;
+    try { origin = new URL(env.APP_ORIGIN ?? ''); }
+    catch { throw new Error('Production requires APP_ORIGIN to be an exact HTTPS origin.'); }
+    if (origin.protocol !== 'https:' || origin.origin !== env.APP_ORIGIN || origin.username || origin.password) {
+      throw new Error('Production requires APP_ORIGIN to be an exact HTTPS origin.');
+    }
+  }
+  const expectedOrigin = env.APP_ORIGIN ?? 'http://localhost:5173';
+  const releaseSha = /^[a-f0-9]{40}$/.test(env.RELEASE_SHA ?? '') ? env.RELEASE_SHA : undefined;
   const apiKey = env.YOUCAM_API_KEY?.trim();
   const liveEnabled = Boolean(apiKey && env.ALLOW_LIVE_TRYON === 'true');
   const reason = liveEnabled ? 'Live YouCam processing is enabled. Images are sent to YouCam only after consent.'
     : 'Configuration required: set YOUCAM_API_KEY and ALLOW_LIVE_TRYON=true on the server. No live images are being generated.';
   const configuredCap = Number(env.MAX_LIVE_JOBS_PER_DAY ?? 30);
-  const dailyCap = options.dailyCap ?? (Number.isSafeInteger(configuredCap) && configuredCap > 0 ? configuredCap : 30);
+  const dailyCap = options.dailyCap ?? configuredCap;
+  if (!Number.isSafeInteger(dailyCap) || dailyCap <= 0) {
+    throw new Error('MAX_LIVE_JOBS_PER_DAY must be a positive integer. Set ALLOW_LIVE_TRYON=false to disable rendering.');
+  }
   const secureCookie = production || env.COOKIE_SECURE === 'true';
   const dbPath = options.dbPath ?? env.SQLITE_PATH ?? resolve(env.DATA_DIR ?? resolve(process.cwd(), '.data'), 'spindle.sqlite');
   if (dbPath !== ':memory:') mkdirSync(dirname(dbPath), { recursive: true, mode: 0o700 });
@@ -76,6 +96,10 @@ export function createApp(options: AppOptions = {}) {
   const app = express();
   app.disable('x-powered-by');
   app.set('trust proxy', false);
+  app.use((_req, res, next) => {
+    res.set({ 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer', 'X-Frame-Options': 'DENY' });
+    next();
+  });
   const provider = new YouCam({ apiKey: apiKey ?? '', fetch: options.fetch, pollIntervalMs: options.pollIntervalMs, timeoutMs: options.providerTimeoutMs });
   const pending = new Map<string, Pending>();
   const workers = new Set<Promise<void>>();
@@ -150,14 +174,14 @@ export function createApp(options: AppOptions = {}) {
   app.use('/api', (req, res, next) => {
     if (!['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
       const origin = req.get('origin');
-      const expected = env.APP_ORIGIN ?? (production ? `${req.protocol}://${req.get('host')}` : 'http://localhost:5173');
-      if (!origin || origin !== expected || req.get('sec-fetch-site') === 'cross-site') {
+      if (!origin || origin !== expectedOrigin || req.get('sec-fetch-site') === 'cross-site') {
         res.status(403).json({ error: 'This request must come from the application origin.' }); return;
       }
     }
     next();
   });
-  app.get('/api/status', (_req, res) => { res.json({ liveEnabled, provider: 'YouCam', reason }); });
+  app.get('/api/status', (_req, res) => { res.json({ liveEnabled, provider: 'YouCam', reason,
+    ...(releaseSha ? { revision: releaseSha } : {}) }); });
   // Session creation is restricted to a write with a valid Origin, not arbitrary GETs.
   const session = (req: Request, res: Response, create: boolean): string | undefined => {
     const token = (req.headers.cookie ?? '').split(';').map(s => s.trim()).find(s => s.startsWith(`${cookieName}=`))?.slice(cookieName.length + 1);

@@ -1,0 +1,2897 @@
+{
+  "generatedAt": "2026-10-30T10:15:11.501Z",
+  "sourceRevision": "f686cfd077a51a67fad1cd2312a5f5f4928b3758",
+  "sourceHashes": {
+    "planner": "dd9cf269d9919b19d96eea22988380907cf066037b8310f76bf57594fb107514",
+    "demo": "3ff28202c3284447bef19e4338ef98a368a60f14dc676beba7d5501abf4bf387",
+    "evaluation": "1ebb31b367ae2eefdb4ceddaf9de0953353c49abce7f271703194cee98761b04"
+  },
+  "environment": {
+    "node": "v24.22.1",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "scope": "Simulated deterministic planner scenarios using the unchanged fictional demo inventory. No human study, retail data or YouCam calls.",
+  "definitions": {
+    "validCompleteAlternatives": "Distinct complete event-to-item assignments satisfying all constraints, excluding the returned assignment. These are not necessarily equal-cost or equally optimal.",
+    "validMaximumCoverageAlternatives": "Distinct assignments covering the same maximum number of events, excluding the returned assignment. These may cost more or use more borrowed pieces.",
+    "eventLocalCandidateCounts": "Per-event outfit combinations before global spending and unique-loan constraints; not a count of feasible multi-event plans.",
+    "runtime": "Synchronous makePlan only, five warmups followed by 25 local runs. Small fixture results are not scalability benchmarks."
+  },
+  "results": [
+    {
+      "id": "baseline",
+      "name": "Three events using a borrowed blazer",
+      "changes": [],
+      "input": {
+        "items": [
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shirt",
+            "name": "Your white shirt",
+            "category": "top",
+            "source": "own",
+            "color": "#ecece6",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-trousers",
+            "name": "Your charcoal trousers",
+            "category": "bottom",
+            "source": "own",
+            "color": "#484b50",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shoes",
+            "name": "Your black shoes",
+            "category": "shoes",
+            "source": "own",
+            "color": "#23282a",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-blazer",
+            "name": "Navy interview blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#253a54",
+            "price": 0,
+            "note": "Sample inventory. Four calendar-day loan."
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-10-29",
+            "location": "Campus Career Closet",
+            "loanDays": 2,
+            "id": "charcoal-blazer",
+            "name": "Charcoal loan blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#54545a",
+            "price": 0,
+            "note": "Short loan. Not available for the final round."
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "buy-blazer",
+            "name": "Everyday formal blazer",
+            "category": "layer",
+            "source": "buy",
+            "color": "#766958",
+            "price": 850,
+            "note": "Fictional item and price. No checkout."
+          },
+          {
+            "sizes": [
+              "L",
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "blue-shirt",
+            "name": "Pale blue shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#b9cdd8",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "cream-shirt",
+            "name": "Ivory shirt",
+            "category": "top",
+            "source": "buy",
+            "color": "#e7dec7",
+            "price": 550
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-pants",
+            "name": "Black tailored trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#333a41",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-pants",
+            "name": "Navy trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#283e59",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "loafers",
+            "name": "Black loafers",
+            "category": "shoes",
+            "source": "borrow",
+            "color": "#313232",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "tan-shoes",
+            "name": "Tan formal shoes",
+            "category": "shoes",
+            "source": "buy",
+            "color": "#9a7252",
+            "price": 750
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "stone-blazer",
+            "name": "Stone blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#b8b0a0",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "green-blazer",
+            "name": "Forest blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#40594d",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "grey-blazer",
+            "name": "Grey blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#989a9c",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "navy-knit",
+            "name": "Navy knit top",
+            "category": "top",
+            "source": "own",
+            "color": "#2a4055",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S",
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "cream-knit",
+            "name": "Cream knit top",
+            "category": "top",
+            "source": "borrow",
+            "color": "#d9d1be",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "denim",
+            "name": "Dark denim",
+            "category": "bottom",
+            "source": "own",
+            "color": "#334d69",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "sneakers",
+            "name": "White sneakers",
+            "category": "shoes",
+            "source": "own",
+            "color": "#e4e7e4",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-shirt",
+            "name": "Black collared shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#383b3d",
+            "price": 0
+          }
+        ],
+        "events": [
+          {
+            "id": "e1",
+            "name": "Graduate role interview",
+            "date": "2026-10-27",
+            "formality": 3
+          },
+          {
+            "id": "e2",
+            "name": "Campus career fair",
+            "date": "2026-10-29",
+            "formality": 2
+          },
+          {
+            "id": "e3",
+            "name": "Final-round interview",
+            "date": "2026-10-30",
+            "formality": 3
+          }
+        ],
+        "budget": 1500,
+        "size": "M",
+        "maxBorrow": 1
+      },
+      "eventsCovered": 3,
+      "totalEvents": 3,
+      "purchaseSpendingINR": 0,
+      "uniqueBorrowedPieces": 1,
+      "completeFeasibleAssignments": 5,
+      "validCompleteAlternatives": 4,
+      "maximumCoverageAssignments": 5,
+      "validMaximumCoverageAlternatives": 4,
+      "eventLocalCandidateCounts": [
+        3,
+        1,
+        2
+      ],
+      "constraintViolations": 0,
+      "feasible": true,
+      "outcome": "fully feasible",
+      "selected": [
+        {
+          "eventId": "e1",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "navy-blazer"
+          ]
+        },
+        {
+          "eventId": "e2",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes"
+          ]
+        },
+        {
+          "eventId": "e3",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "navy-blazer"
+          ]
+        }
+      ],
+      "uncoveredEventIds": [],
+      "objectiveVerifiedAgainstIndependentEnumeration": true,
+      "runtimeMs": {
+        "median": 0.0415,
+        "min": 0.0403,
+        "max": 0.2972,
+        "measuredRuns": 25,
+        "warmupRuns": 5
+      }
+    },
+    {
+      "id": "unavailable",
+      "name": "Borrowed blazer becomes unavailable",
+      "changes": [
+        "navy-blazer.unavailable = true"
+      ],
+      "input": {
+        "items": [
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shirt",
+            "name": "Your white shirt",
+            "category": "top",
+            "source": "own",
+            "color": "#ecece6",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-trousers",
+            "name": "Your charcoal trousers",
+            "category": "bottom",
+            "source": "own",
+            "color": "#484b50",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shoes",
+            "name": "Your black shoes",
+            "category": "shoes",
+            "source": "own",
+            "color": "#23282a",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-blazer",
+            "name": "Navy interview blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#253a54",
+            "price": 0,
+            "note": "Sample inventory. Four calendar-day loan.",
+            "unavailable": true
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-10-29",
+            "location": "Campus Career Closet",
+            "loanDays": 2,
+            "id": "charcoal-blazer",
+            "name": "Charcoal loan blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#54545a",
+            "price": 0,
+            "note": "Short loan. Not available for the final round."
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "buy-blazer",
+            "name": "Everyday formal blazer",
+            "category": "layer",
+            "source": "buy",
+            "color": "#766958",
+            "price": 850,
+            "note": "Fictional item and price. No checkout."
+          },
+          {
+            "sizes": [
+              "L",
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "blue-shirt",
+            "name": "Pale blue shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#b9cdd8",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "cream-shirt",
+            "name": "Ivory shirt",
+            "category": "top",
+            "source": "buy",
+            "color": "#e7dec7",
+            "price": 550
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-pants",
+            "name": "Black tailored trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#333a41",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-pants",
+            "name": "Navy trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#283e59",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "loafers",
+            "name": "Black loafers",
+            "category": "shoes",
+            "source": "borrow",
+            "color": "#313232",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "tan-shoes",
+            "name": "Tan formal shoes",
+            "category": "shoes",
+            "source": "buy",
+            "color": "#9a7252",
+            "price": 750
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "stone-blazer",
+            "name": "Stone blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#b8b0a0",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "green-blazer",
+            "name": "Forest blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#40594d",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "grey-blazer",
+            "name": "Grey blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#989a9c",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "navy-knit",
+            "name": "Navy knit top",
+            "category": "top",
+            "source": "own",
+            "color": "#2a4055",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S",
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "cream-knit",
+            "name": "Cream knit top",
+            "category": "top",
+            "source": "borrow",
+            "color": "#d9d1be",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "denim",
+            "name": "Dark denim",
+            "category": "bottom",
+            "source": "own",
+            "color": "#334d69",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "sneakers",
+            "name": "White sneakers",
+            "category": "shoes",
+            "source": "own",
+            "color": "#e4e7e4",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-shirt",
+            "name": "Black collared shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#383b3d",
+            "price": 0
+          }
+        ],
+        "events": [
+          {
+            "id": "e1",
+            "name": "Graduate role interview",
+            "date": "2026-10-27",
+            "formality": 3
+          },
+          {
+            "id": "e2",
+            "name": "Campus career fair",
+            "date": "2026-10-29",
+            "formality": 2
+          },
+          {
+            "id": "e3",
+            "name": "Final-round interview",
+            "date": "2026-10-30",
+            "formality": 3
+          }
+        ],
+        "budget": 1500,
+        "size": "M",
+        "maxBorrow": 1
+      },
+      "eventsCovered": 3,
+      "totalEvents": 3,
+      "purchaseSpendingINR": 850,
+      "uniqueBorrowedPieces": 0,
+      "completeFeasibleAssignments": 2,
+      "validCompleteAlternatives": 1,
+      "maximumCoverageAssignments": 2,
+      "validMaximumCoverageAlternatives": 1,
+      "eventLocalCandidateCounts": [
+        2,
+        1,
+        1
+      ],
+      "constraintViolations": 0,
+      "feasible": true,
+      "outcome": "fully feasible",
+      "selected": [
+        {
+          "eventId": "e1",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "buy-blazer"
+          ]
+        },
+        {
+          "eventId": "e2",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes"
+          ]
+        },
+        {
+          "eventId": "e3",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "buy-blazer"
+          ]
+        }
+      ],
+      "uncoveredEventIds": [],
+      "objectiveVerifiedAgainstIndependentEnumeration": true,
+      "runtimeMs": {
+        "median": 0.0353,
+        "min": 0.0338,
+        "max": 0.0423,
+        "measuredRuns": 25,
+        "warmupRuns": 5
+      }
+    },
+    {
+      "id": "replacement-affordable",
+      "name": "Budget permits the replacement purchase",
+      "changes": [
+        "navy-blazer.unavailable = true",
+        "budget = 850 (exact replacement price)"
+      ],
+      "input": {
+        "items": [
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shirt",
+            "name": "Your white shirt",
+            "category": "top",
+            "source": "own",
+            "color": "#ecece6",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-trousers",
+            "name": "Your charcoal trousers",
+            "category": "bottom",
+            "source": "own",
+            "color": "#484b50",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shoes",
+            "name": "Your black shoes",
+            "category": "shoes",
+            "source": "own",
+            "color": "#23282a",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-blazer",
+            "name": "Navy interview blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#253a54",
+            "price": 0,
+            "note": "Sample inventory. Four calendar-day loan.",
+            "unavailable": true
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-10-29",
+            "location": "Campus Career Closet",
+            "loanDays": 2,
+            "id": "charcoal-blazer",
+            "name": "Charcoal loan blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#54545a",
+            "price": 0,
+            "note": "Short loan. Not available for the final round."
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "buy-blazer",
+            "name": "Everyday formal blazer",
+            "category": "layer",
+            "source": "buy",
+            "color": "#766958",
+            "price": 850,
+            "note": "Fictional item and price. No checkout."
+          },
+          {
+            "sizes": [
+              "L",
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "blue-shirt",
+            "name": "Pale blue shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#b9cdd8",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "cream-shirt",
+            "name": "Ivory shirt",
+            "category": "top",
+            "source": "buy",
+            "color": "#e7dec7",
+            "price": 550
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-pants",
+            "name": "Black tailored trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#333a41",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-pants",
+            "name": "Navy trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#283e59",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "loafers",
+            "name": "Black loafers",
+            "category": "shoes",
+            "source": "borrow",
+            "color": "#313232",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "tan-shoes",
+            "name": "Tan formal shoes",
+            "category": "shoes",
+            "source": "buy",
+            "color": "#9a7252",
+            "price": 750
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "stone-blazer",
+            "name": "Stone blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#b8b0a0",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "green-blazer",
+            "name": "Forest blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#40594d",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "grey-blazer",
+            "name": "Grey blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#989a9c",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "navy-knit",
+            "name": "Navy knit top",
+            "category": "top",
+            "source": "own",
+            "color": "#2a4055",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S",
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "cream-knit",
+            "name": "Cream knit top",
+            "category": "top",
+            "source": "borrow",
+            "color": "#d9d1be",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "denim",
+            "name": "Dark denim",
+            "category": "bottom",
+            "source": "own",
+            "color": "#334d69",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "sneakers",
+            "name": "White sneakers",
+            "category": "shoes",
+            "source": "own",
+            "color": "#e4e7e4",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-shirt",
+            "name": "Black collared shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#383b3d",
+            "price": 0
+          }
+        ],
+        "events": [
+          {
+            "id": "e1",
+            "name": "Graduate role interview",
+            "date": "2026-10-27",
+            "formality": 3
+          },
+          {
+            "id": "e2",
+            "name": "Campus career fair",
+            "date": "2026-10-29",
+            "formality": 2
+          },
+          {
+            "id": "e3",
+            "name": "Final-round interview",
+            "date": "2026-10-30",
+            "formality": 3
+          }
+        ],
+        "budget": 850,
+        "size": "M",
+        "maxBorrow": 1
+      },
+      "eventsCovered": 3,
+      "totalEvents": 3,
+      "purchaseSpendingINR": 850,
+      "uniqueBorrowedPieces": 0,
+      "completeFeasibleAssignments": 2,
+      "validCompleteAlternatives": 1,
+      "maximumCoverageAssignments": 2,
+      "validMaximumCoverageAlternatives": 1,
+      "eventLocalCandidateCounts": [
+        2,
+        1,
+        1
+      ],
+      "constraintViolations": 0,
+      "feasible": true,
+      "outcome": "fully feasible",
+      "selected": [
+        {
+          "eventId": "e1",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "buy-blazer"
+          ]
+        },
+        {
+          "eventId": "e2",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes"
+          ]
+        },
+        {
+          "eventId": "e3",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "buy-blazer"
+          ]
+        }
+      ],
+      "uncoveredEventIds": [],
+      "objectiveVerifiedAgainstIndependentEnumeration": true,
+      "runtimeMs": {
+        "median": 0.0332,
+        "min": 0.0326,
+        "max": 0.1323,
+        "measuredRuns": 25,
+        "warmupRuns": 5
+      }
+    },
+    {
+      "id": "replacement-unaffordable",
+      "name": "Budget does not permit the replacement",
+      "changes": [
+        "navy-blazer.unavailable = true",
+        "budget = 500"
+      ],
+      "input": {
+        "items": [
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shirt",
+            "name": "Your white shirt",
+            "category": "top",
+            "source": "own",
+            "color": "#ecece6",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-trousers",
+            "name": "Your charcoal trousers",
+            "category": "bottom",
+            "source": "own",
+            "color": "#484b50",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shoes",
+            "name": "Your black shoes",
+            "category": "shoes",
+            "source": "own",
+            "color": "#23282a",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-blazer",
+            "name": "Navy interview blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#253a54",
+            "price": 0,
+            "note": "Sample inventory. Four calendar-day loan.",
+            "unavailable": true
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-10-29",
+            "location": "Campus Career Closet",
+            "loanDays": 2,
+            "id": "charcoal-blazer",
+            "name": "Charcoal loan blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#54545a",
+            "price": 0,
+            "note": "Short loan. Not available for the final round."
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "buy-blazer",
+            "name": "Everyday formal blazer",
+            "category": "layer",
+            "source": "buy",
+            "color": "#766958",
+            "price": 850,
+            "note": "Fictional item and price. No checkout."
+          },
+          {
+            "sizes": [
+              "L",
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "blue-shirt",
+            "name": "Pale blue shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#b9cdd8",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "cream-shirt",
+            "name": "Ivory shirt",
+            "category": "top",
+            "source": "buy",
+            "color": "#e7dec7",
+            "price": 550
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-pants",
+            "name": "Black tailored trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#333a41",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-pants",
+            "name": "Navy trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#283e59",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "loafers",
+            "name": "Black loafers",
+            "category": "shoes",
+            "source": "borrow",
+            "color": "#313232",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "tan-shoes",
+            "name": "Tan formal shoes",
+            "category": "shoes",
+            "source": "buy",
+            "color": "#9a7252",
+            "price": 750
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "stone-blazer",
+            "name": "Stone blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#b8b0a0",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "green-blazer",
+            "name": "Forest blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#40594d",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "grey-blazer",
+            "name": "Grey blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#989a9c",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "navy-knit",
+            "name": "Navy knit top",
+            "category": "top",
+            "source": "own",
+            "color": "#2a4055",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S",
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "cream-knit",
+            "name": "Cream knit top",
+            "category": "top",
+            "source": "borrow",
+            "color": "#d9d1be",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "denim",
+            "name": "Dark denim",
+            "category": "bottom",
+            "source": "own",
+            "color": "#334d69",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "sneakers",
+            "name": "White sneakers",
+            "category": "shoes",
+            "source": "own",
+            "color": "#e4e7e4",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-shirt",
+            "name": "Black collared shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#383b3d",
+            "price": 0
+          }
+        ],
+        "events": [
+          {
+            "id": "e1",
+            "name": "Graduate role interview",
+            "date": "2026-10-27",
+            "formality": 3
+          },
+          {
+            "id": "e2",
+            "name": "Campus career fair",
+            "date": "2026-10-29",
+            "formality": 2
+          },
+          {
+            "id": "e3",
+            "name": "Final-round interview",
+            "date": "2026-10-30",
+            "formality": 3
+          }
+        ],
+        "budget": 500,
+        "size": "M",
+        "maxBorrow": 1
+      },
+      "eventsCovered": 2,
+      "totalEvents": 3,
+      "purchaseSpendingINR": 0,
+      "uniqueBorrowedPieces": 1,
+      "completeFeasibleAssignments": 0,
+      "validCompleteAlternatives": 0,
+      "maximumCoverageAssignments": 1,
+      "validMaximumCoverageAlternatives": 0,
+      "eventLocalCandidateCounts": [
+        2,
+        1,
+        1
+      ],
+      "constraintViolations": 0,
+      "feasible": false,
+      "outcome": "partial",
+      "selected": [
+        {
+          "eventId": "e1",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "charcoal-blazer"
+          ]
+        },
+        {
+          "eventId": "e2",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes"
+          ]
+        }
+      ],
+      "uncoveredEventIds": [
+        "e3"
+      ],
+      "objectiveVerifiedAgainstIndependentEnumeration": true,
+      "runtimeMs": {
+        "median": 0.0305,
+        "min": 0.03,
+        "max": 0.265,
+        "measuredRuns": 25,
+        "warmupRuns": 5
+      }
+    },
+    {
+      "id": "loan-conflict",
+      "name": "Borrowing dates conflict",
+      "changes": [
+        "navy-blazer.loanDays = 1 (events are three days apart)"
+      ],
+      "input": {
+        "items": [
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shirt",
+            "name": "Your white shirt",
+            "category": "top",
+            "source": "own",
+            "color": "#ecece6",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-trousers",
+            "name": "Your charcoal trousers",
+            "category": "bottom",
+            "source": "own",
+            "color": "#484b50",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shoes",
+            "name": "Your black shoes",
+            "category": "shoes",
+            "source": "own",
+            "color": "#23282a",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 1,
+            "id": "navy-blazer",
+            "name": "Navy interview blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#253a54",
+            "price": 0,
+            "note": "Sample inventory. Four calendar-day loan."
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-10-29",
+            "location": "Campus Career Closet",
+            "loanDays": 2,
+            "id": "charcoal-blazer",
+            "name": "Charcoal loan blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#54545a",
+            "price": 0,
+            "note": "Short loan. Not available for the final round."
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "buy-blazer",
+            "name": "Everyday formal blazer",
+            "category": "layer",
+            "source": "buy",
+            "color": "#766958",
+            "price": 850,
+            "note": "Fictional item and price. No checkout."
+          },
+          {
+            "sizes": [
+              "L",
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "blue-shirt",
+            "name": "Pale blue shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#b9cdd8",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "cream-shirt",
+            "name": "Ivory shirt",
+            "category": "top",
+            "source": "buy",
+            "color": "#e7dec7",
+            "price": 550
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-pants",
+            "name": "Black tailored trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#333a41",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-pants",
+            "name": "Navy trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#283e59",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "loafers",
+            "name": "Black loafers",
+            "category": "shoes",
+            "source": "borrow",
+            "color": "#313232",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "tan-shoes",
+            "name": "Tan formal shoes",
+            "category": "shoes",
+            "source": "buy",
+            "color": "#9a7252",
+            "price": 750
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "stone-blazer",
+            "name": "Stone blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#b8b0a0",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "green-blazer",
+            "name": "Forest blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#40594d",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "grey-blazer",
+            "name": "Grey blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#989a9c",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "navy-knit",
+            "name": "Navy knit top",
+            "category": "top",
+            "source": "own",
+            "color": "#2a4055",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S",
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "cream-knit",
+            "name": "Cream knit top",
+            "category": "top",
+            "source": "borrow",
+            "color": "#d9d1be",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "denim",
+            "name": "Dark denim",
+            "category": "bottom",
+            "source": "own",
+            "color": "#334d69",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "sneakers",
+            "name": "White sneakers",
+            "category": "shoes",
+            "source": "own",
+            "color": "#e4e7e4",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-shirt",
+            "name": "Black collared shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#383b3d",
+            "price": 0
+          }
+        ],
+        "events": [
+          {
+            "id": "e1",
+            "name": "Graduate role interview",
+            "date": "2026-10-27",
+            "formality": 3
+          },
+          {
+            "id": "e2",
+            "name": "Campus career fair",
+            "date": "2026-10-29",
+            "formality": 2
+          },
+          {
+            "id": "e3",
+            "name": "Final-round interview",
+            "date": "2026-10-30",
+            "formality": 3
+          }
+        ],
+        "budget": 1500,
+        "size": "M",
+        "maxBorrow": 1
+      },
+      "eventsCovered": 3,
+      "totalEvents": 3,
+      "purchaseSpendingINR": 850,
+      "uniqueBorrowedPieces": 0,
+      "completeFeasibleAssignments": 4,
+      "validCompleteAlternatives": 3,
+      "maximumCoverageAssignments": 4,
+      "validMaximumCoverageAlternatives": 3,
+      "eventLocalCandidateCounts": [
+        3,
+        1,
+        2
+      ],
+      "constraintViolations": 0,
+      "feasible": true,
+      "outcome": "fully feasible",
+      "selected": [
+        {
+          "eventId": "e1",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "buy-blazer"
+          ]
+        },
+        {
+          "eventId": "e2",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes"
+          ]
+        },
+        {
+          "eventId": "e3",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "buy-blazer"
+          ]
+        }
+      ],
+      "uncoveredEventIds": [],
+      "objectiveVerifiedAgainstIndependentEnumeration": true,
+      "runtimeMs": {
+        "median": 0.043,
+        "min": 0.0401,
+        "max": 0.0615,
+        "measuredRuns": 25,
+        "warmupRuns": 5
+      }
+    },
+    {
+      "id": "rejected",
+      "name": "User rejects the shortlisted navy blazer",
+      "changes": [
+        "rejectedIds = [navy-blazer]"
+      ],
+      "input": {
+        "items": [
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shirt",
+            "name": "Your white shirt",
+            "category": "top",
+            "source": "own",
+            "color": "#ecece6",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-trousers",
+            "name": "Your charcoal trousers",
+            "category": "bottom",
+            "source": "own",
+            "color": "#484b50",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shoes",
+            "name": "Your black shoes",
+            "category": "shoes",
+            "source": "own",
+            "color": "#23282a",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-blazer",
+            "name": "Navy interview blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#253a54",
+            "price": 0,
+            "note": "Sample inventory. Four calendar-day loan."
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-10-29",
+            "location": "Campus Career Closet",
+            "loanDays": 2,
+            "id": "charcoal-blazer",
+            "name": "Charcoal loan blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#54545a",
+            "price": 0,
+            "note": "Short loan. Not available for the final round."
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "buy-blazer",
+            "name": "Everyday formal blazer",
+            "category": "layer",
+            "source": "buy",
+            "color": "#766958",
+            "price": 850,
+            "note": "Fictional item and price. No checkout."
+          },
+          {
+            "sizes": [
+              "L",
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "blue-shirt",
+            "name": "Pale blue shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#b9cdd8",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "cream-shirt",
+            "name": "Ivory shirt",
+            "category": "top",
+            "source": "buy",
+            "color": "#e7dec7",
+            "price": 550
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-pants",
+            "name": "Black tailored trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#333a41",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-pants",
+            "name": "Navy trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#283e59",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "loafers",
+            "name": "Black loafers",
+            "category": "shoes",
+            "source": "borrow",
+            "color": "#313232",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "tan-shoes",
+            "name": "Tan formal shoes",
+            "category": "shoes",
+            "source": "buy",
+            "color": "#9a7252",
+            "price": 750
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "stone-blazer",
+            "name": "Stone blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#b8b0a0",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "green-blazer",
+            "name": "Forest blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#40594d",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "grey-blazer",
+            "name": "Grey blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#989a9c",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "navy-knit",
+            "name": "Navy knit top",
+            "category": "top",
+            "source": "own",
+            "color": "#2a4055",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S",
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "cream-knit",
+            "name": "Cream knit top",
+            "category": "top",
+            "source": "borrow",
+            "color": "#d9d1be",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "denim",
+            "name": "Dark denim",
+            "category": "bottom",
+            "source": "own",
+            "color": "#334d69",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "sneakers",
+            "name": "White sneakers",
+            "category": "shoes",
+            "source": "own",
+            "color": "#e4e7e4",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-shirt",
+            "name": "Black collared shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#383b3d",
+            "price": 0
+          }
+        ],
+        "events": [
+          {
+            "id": "e1",
+            "name": "Graduate role interview",
+            "date": "2026-10-27",
+            "formality": 3
+          },
+          {
+            "id": "e2",
+            "name": "Campus career fair",
+            "date": "2026-10-29",
+            "formality": 2
+          },
+          {
+            "id": "e3",
+            "name": "Final-round interview",
+            "date": "2026-10-30",
+            "formality": 3
+          }
+        ],
+        "budget": 1500,
+        "size": "M",
+        "maxBorrow": 1,
+        "rejectedIds": [
+          "navy-blazer"
+        ]
+      },
+      "eventsCovered": 3,
+      "totalEvents": 3,
+      "purchaseSpendingINR": 850,
+      "uniqueBorrowedPieces": 0,
+      "completeFeasibleAssignments": 2,
+      "validCompleteAlternatives": 1,
+      "maximumCoverageAssignments": 2,
+      "validMaximumCoverageAlternatives": 1,
+      "eventLocalCandidateCounts": [
+        2,
+        1,
+        1
+      ],
+      "constraintViolations": 0,
+      "feasible": true,
+      "outcome": "fully feasible",
+      "selected": [
+        {
+          "eventId": "e1",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "buy-blazer"
+          ]
+        },
+        {
+          "eventId": "e2",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes"
+          ]
+        },
+        {
+          "eventId": "e3",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes",
+            "buy-blazer"
+          ]
+        }
+      ],
+      "uncoveredEventIds": [],
+      "objectiveVerifiedAgainstIndependentEnumeration": true,
+      "runtimeMs": {
+        "median": 0.0371,
+        "min": 0.0303,
+        "max": 0.184,
+        "measuredRuns": 25,
+        "warmupRuns": 5
+      }
+    },
+    {
+      "id": "no-complete-wardrobe",
+      "name": "No valid complete wardrobe exists",
+      "changes": [
+        "All layer items unavailable (other inventory and budget unchanged)"
+      ],
+      "input": {
+        "items": [
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shirt",
+            "name": "Your white shirt",
+            "category": "top",
+            "source": "own",
+            "color": "#ecece6",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-trousers",
+            "name": "Your charcoal trousers",
+            "category": "bottom",
+            "source": "own",
+            "color": "#484b50",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "own-shoes",
+            "name": "Your black shoes",
+            "category": "shoes",
+            "source": "own",
+            "color": "#23282a",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-blazer",
+            "name": "Navy interview blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#253a54",
+            "price": 0,
+            "note": "Sample inventory. Four calendar-day loan.",
+            "unavailable": true
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-10-29",
+            "location": "Campus Career Closet",
+            "loanDays": 2,
+            "id": "charcoal-blazer",
+            "name": "Charcoal loan blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#54545a",
+            "price": 0,
+            "note": "Short loan. Not available for the final round.",
+            "unavailable": true
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "buy-blazer",
+            "name": "Everyday formal blazer",
+            "category": "layer",
+            "source": "buy",
+            "color": "#766958",
+            "price": 850,
+            "note": "Fictional item and price. No checkout.",
+            "unavailable": true
+          },
+          {
+            "sizes": [
+              "L",
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "blue-shirt",
+            "name": "Pale blue shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#b9cdd8",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "cream-shirt",
+            "name": "Ivory shirt",
+            "category": "top",
+            "source": "buy",
+            "color": "#e7dec7",
+            "price": 550
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-pants",
+            "name": "Black tailored trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#333a41",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "navy-pants",
+            "name": "Navy trousers",
+            "category": "bottom",
+            "source": "borrow",
+            "color": "#283e59",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "loafers",
+            "name": "Black loafers",
+            "category": "shoes",
+            "source": "borrow",
+            "color": "#313232",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Illustrative retail option",
+            "loanDays": 4,
+            "id": "tan-shoes",
+            "name": "Tan formal shoes",
+            "category": "shoes",
+            "source": "buy",
+            "color": "#9a7252",
+            "price": 750
+          },
+          {
+            "sizes": [
+              "S"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "stone-blazer",
+            "name": "Stone blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#b8b0a0",
+            "price": 0,
+            "unavailable": true
+          },
+          {
+            "sizes": [
+              "L"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "green-blazer",
+            "name": "Forest blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#40594d",
+            "price": 0,
+            "unavailable": true
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "grey-blazer",
+            "name": "Grey blazer",
+            "category": "layer",
+            "source": "borrow",
+            "color": "#989a9c",
+            "price": 0,
+            "unavailable": true
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "navy-knit",
+            "name": "Navy knit top",
+            "category": "top",
+            "source": "own",
+            "color": "#2a4055",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "S",
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "cream-knit",
+            "name": "Cream knit top",
+            "category": "top",
+            "source": "borrow",
+            "color": "#d9d1be",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "denim",
+            "name": "Dark denim",
+            "category": "bottom",
+            "source": "own",
+            "color": "#334d69",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "M"
+            ],
+            "formality": 1,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Your wardrobe",
+            "loanDays": 4,
+            "id": "sneakers",
+            "name": "White sneakers",
+            "category": "shoes",
+            "source": "own",
+            "color": "#e4e7e4",
+            "price": 0
+          },
+          {
+            "sizes": [
+              "XL"
+            ],
+            "formality": 3,
+            "availableFrom": "2026-10-25",
+            "availableUntil": "2026-11-15",
+            "location": "Campus Career Closet",
+            "loanDays": 4,
+            "id": "black-shirt",
+            "name": "Black collared shirt",
+            "category": "top",
+            "source": "borrow",
+            "color": "#383b3d",
+            "price": 0
+          }
+        ],
+        "events": [
+          {
+            "id": "e1",
+            "name": "Graduate role interview",
+            "date": "2026-10-27",
+            "formality": 3
+          },
+          {
+            "id": "e2",
+            "name": "Campus career fair",
+            "date": "2026-10-29",
+            "formality": 2
+          },
+          {
+            "id": "e3",
+            "name": "Final-round interview",
+            "date": "2026-10-30",
+            "formality": 3
+          }
+        ],
+        "budget": 1500,
+        "size": "M",
+        "maxBorrow": 1
+      },
+      "eventsCovered": 1,
+      "totalEvents": 3,
+      "purchaseSpendingINR": 0,
+      "uniqueBorrowedPieces": 0,
+      "completeFeasibleAssignments": 0,
+      "validCompleteAlternatives": 0,
+      "maximumCoverageAssignments": 1,
+      "validMaximumCoverageAlternatives": 0,
+      "eventLocalCandidateCounts": [
+        0,
+        1,
+        0
+      ],
+      "constraintViolations": 0,
+      "feasible": false,
+      "outcome": "partial",
+      "selected": [
+        {
+          "eventId": "e2",
+          "itemIds": [
+            "own-shirt",
+            "own-trousers",
+            "own-shoes"
+          ]
+        }
+      ],
+      "uncoveredEventIds": [
+        "e1",
+        "e3"
+      ],
+      "objectiveVerifiedAgainstIndependentEnumeration": true,
+      "runtimeMs": {
+        "median": 0.025,
+        "min": 0.0242,
+        "max": 0.0382,
+        "measuredRuns": 25,
+        "warmupRuns": 5
+      }
+    }
+  ]
+}

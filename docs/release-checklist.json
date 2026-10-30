@@ -1,0 +1,740 @@
+[
+  {
+    "id": 1,
+    "group": "Implementation",
+    "requirement": "Node 24 clean dependency install",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "package.json",
+      "package-lock.json"
+    ],
+    "verificationCommand": "SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm ci",
+    "expectedBehavior": "Lockfile install on Node24",
+    "observedBehavior": "Installed successfully after machine-global libvips bypass",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 2,
+    "group": "Implementation",
+    "requirement": "All unit and HTTP tests pass",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts"
+    ],
+    "verificationCommand": "npm test",
+    "expectedBehavior": "No failed tests",
+    "observedBehavior": "42 passed, 0 failed",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 3,
+    "group": "Implementation",
+    "requirement": "Strict TypeScript and production build",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/main.tsx",
+      "src/Studio.tsx"
+    ],
+    "verificationCommand": "npm run build",
+    "expectedBehavior": "Typecheck and Vite succeed",
+    "observedBehavior": "Passed in local release candidate",
+    "evidenceArtifact": "build stdout",
+    "commitSHA": null
+  },
+  {
+    "id": 4,
+    "group": "Implementation",
+    "requirement": "Preserve original solver and fixture",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "shared/planner.ts",
+      "shared/demo.ts"
+    ],
+    "verificationCommand": "git diff f686cfd -- shared/planner.ts shared/demo.ts",
+    "expectedBehavior": "No fixture or solver alteration",
+    "observedBehavior": "No diff",
+    "evidenceArtifact": "docs/evaluation-results.json",
+    "commitSHA": null
+  },
+  {
+    "id": 5,
+    "group": "Implementation",
+    "requirement": "Nonmutating exact bounded optimization",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "tests/planner.test.ts"
+    ],
+    "verificationCommand": "npm test",
+    "expectedBehavior": "Lexicographic objective and no mutation",
+    "observedBehavior": "15 planner tests pass",
+    "evidenceArtifact": "tests/planner.test.ts",
+    "commitSHA": null
+  },
+  {
+    "id": 6,
+    "group": "Implementation",
+    "requirement": "Original media and evidence intact",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      ".asset-pack",
+      "scripts/restore-assets.mjs"
+    ],
+    "verificationCommand": "npm run assets:restore",
+    "expectedBehavior": "9 hash-verified media originals",
+    "observedBehavior": "9 restored/verified; no overwrite",
+    "evidenceArtifact": "docs/PUBLIC_UPLOAD.md",
+    "commitSHA": null
+  },
+  {
+    "id": 7,
+    "group": "YouCam",
+    "requirement": "Current primary provider contract reviewed",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/youcam.ts"
+    ],
+    "verificationCommand": "Review official AI Clothes/V4 reference",
+    "expectedBehavior": "Auth, registration,PUT,task,poll correct",
+    "observedBehavior": "Existing adapter matches; no protocol change",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 8,
+    "group": "YouCam",
+    "requirement": "Exact outer category and strict filtering",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "tests/server.test.ts"
+    ],
+    "verificationCommand": "npm test",
+    "expectedBehavior": "No category fallback",
+    "observedBehavior": "Contract fixtures verify exact values",
+    "evidenceArtifact": "tests/server.test.ts",
+    "commitSHA": null
+  },
+  {
+    "id": 9,
+    "group": "YouCam",
+    "requirement": "Two genuine historical results preserved",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "live-evidence",
+      "docs/LIVE_TEST.md",
+      "docs/OUTER_TEST.md"
+    ],
+    "verificationCommand": "npm run assets:restore",
+    "expectedBehavior": "Both successful outputs remain distinct",
+    "observedBehavior": "Upper-body replacement and outer layering retained",
+    "evidenceArtifact": "docs/LIVE_TEST.md; docs/OUTER_TEST.md",
+    "commitSHA": null
+  },
+  {
+    "id": 10,
+    "group": "YouCam",
+    "requirement": "Replay never implies new generation",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/Studio.tsx"
+    ],
+    "verificationCommand": "npm run test:browser",
+    "expectedBehavior": "Historical labels and 0 render POSTs",
+    "observedBehavior": "Verified genuine historical image, no POST",
+    "evidenceArtifact": "test-results/youcam-replay-desktop.png",
+    "commitSHA": null
+  },
+  {
+    "id": 11,
+    "group": "YouCam",
+    "requirement": "No automatic paid request or retry",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/Studio.tsx",
+      "server/youcam.ts"
+    ],
+    "verificationCommand": "npm test; npm run test:browser",
+    "expectedBehavior": "Explicit submit only, duplicate protected",
+    "observedBehavior": "Fixture double click and provider failure checks pass",
+    "evidenceArtifact": "tests/journey.mjs",
+    "commitSHA": null
+  },
+  {
+    "id": 12,
+    "group": "YouCam",
+    "requirement": "Server gates and visitor-key independence",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "src/Studio.tsx"
+    ],
+    "verificationCommand": "npm test",
+    "expectedBehavior": "Planner works without visitor key",
+    "observedBehavior": "Disabled mode sends no provider request",
+    "evidenceArtifact": "tests/server.test.ts",
+    "commitSHA": null
+  },
+  {
+    "id": 13,
+    "group": "YouCam",
+    "requirement": "Fresh authorized live UI render",
+    "status": "blocked",
+    "changedFiles": [
+      "src/Studio.tsx"
+    ],
+    "verificationCommand": "Private price/balance preflight then one render",
+    "expectedBehavior": "Key + verified units before task",
+    "observedBehavior": "User approved one render but current key/proxy unavailable; no new units spent",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 14,
+    "group": "Journey",
+    "requirement": "Select actual outfit garment and event",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/main.tsx",
+      "src/Studio.tsx"
+    ],
+    "verificationCommand": "npm run test:browser",
+    "expectedBehavior": "Exact item/event in studio",
+    "observedBehavior": "Navy blazer/interview context verified",
+    "evidenceArtifact": "tests/journey.mjs",
+    "commitSHA": null
+  },
+  {
+    "id": 15,
+    "group": "Journey",
+    "requirement": "Person/garment consent and category",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/Studio.tsx"
+    ],
+    "verificationCommand": "npm run test:browser",
+    "expectedBehavior": "Generate disabled until images and consent",
+    "observedBehavior": "HTTP-fixture UI checks pass",
+    "evidenceArtifact": "tests/journey.mjs",
+    "commitSHA": null
+  },
+  {
+    "id": 16,
+    "group": "Journey",
+    "requirement": "Upload/render/complete/failure progress",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/Studio.tsx"
+    ],
+    "verificationCommand": "npm run test:browser",
+    "expectedBehavior": "Visible stages and errors",
+    "observedBehavior": "HTTP fixtures exercise each stage; not live proof",
+    "evidenceArtifact": "tests/journey.mjs",
+    "commitSHA": null
+  },
+  {
+    "id": 17,
+    "group": "Journey",
+    "requirement": "Before/after keyboard comparison",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/Studio.tsx"
+    ],
+    "verificationCommand": "npm run test:browser",
+    "expectedBehavior": "Range input usable by keys",
+    "observedBehavior": "ArrowRight changes50 to51, actual result decoded",
+    "evidenceArtifact": "test-results/youcam-replay-desktop.png",
+    "commitSHA": null
+  },
+  {
+    "id": 18,
+    "group": "Journey",
+    "requirement": "Accept keeps inspected candidate",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/main.tsx"
+    ],
+    "verificationCommand": "npm run test:browser",
+    "expectedBehavior": "Shortlist labels acceptance",
+    "observedBehavior": "Accepted, spend remains0",
+    "evidenceArtifact": "tests/journey.mjs",
+    "commitSHA": null
+  },
+  {
+    "id": 19,
+    "group": "Journey",
+    "requirement": "Reject changes real planner input",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/main.tsx"
+    ],
+    "verificationCommand": "npm run test:browser",
+    "expectedBehavior": "Excluded ID affects all events",
+    "observedBehavior": "Navy blazer absent after recalculation",
+    "evidenceArtifact": "tests/journey.mjs",
+    "commitSHA": null
+  },
+  {
+    "id": 20,
+    "group": "Journey",
+    "requirement": "Show coverage/budget/borrowing changes",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/main.tsx"
+    ],
+    "verificationCommand": "npm run test:browser",
+    "expectedBehavior": "Actual before/after metrics",
+    "observedBehavior": "3/3\u21923/3; \u20b90\u2192\u20b9850; loans1\u21920",
+    "evidenceArtifact": "test-results/recalculated-desktop.png",
+    "commitSHA": null
+  },
+  {
+    "id": 21,
+    "group": "Journey",
+    "requirement": "Preserve navigation and invalidate stale context",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "src/main.tsx"
+    ],
+    "verificationCommand": "npm run test:browser",
+    "expectedBehavior": "Home keeps edits, edited brief invalidates selection",
+    "observedBehavior": "Browser checks pass",
+    "evidenceArtifact": "tests/journey.mjs",
+    "commitSHA": null
+  },
+  {
+    "id": 22,
+    "group": "Evaluation",
+    "requirement": "Borrowed blazer covers all",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "scripts/evaluate.ts",
+      "docs/EVALUATION.md"
+    ],
+    "verificationCommand": "npm run evaluate",
+    "expectedBehavior": "Independent objective matches, 0 violations",
+    "observedBehavior": "3/3;\u20b90;1loan;4 complete alternatives; 0 violations; measured runtime in JSON",
+    "evidenceArtifact": "docs/evaluation-results.json",
+    "commitSHA": null
+  },
+  {
+    "id": 23,
+    "group": "Evaluation",
+    "requirement": "Blazer unavailable",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "scripts/evaluate.ts",
+      "docs/EVALUATION.md"
+    ],
+    "verificationCommand": "npm run evaluate",
+    "expectedBehavior": "Independent objective matches, 0 violations",
+    "observedBehavior": "3/3;\u20b9850;0loans;1 alternative; 0 violations; measured runtime in JSON",
+    "evidenceArtifact": "docs/evaluation-results.json",
+    "commitSHA": null
+  },
+  {
+    "id": 24,
+    "group": "Evaluation",
+    "requirement": "Replacement within budget",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "scripts/evaluate.ts",
+      "docs/EVALUATION.md"
+    ],
+    "verificationCommand": "npm run evaluate",
+    "expectedBehavior": "Independent objective matches, 0 violations",
+    "observedBehavior": "3/3;\u20b9850;0loans;1 alternative; 0 violations; measured runtime in JSON",
+    "evidenceArtifact": "docs/evaluation-results.json",
+    "commitSHA": null
+  },
+  {
+    "id": 25,
+    "group": "Evaluation",
+    "requirement": "Replacement over budget",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "scripts/evaluate.ts",
+      "docs/EVALUATION.md"
+    ],
+    "verificationCommand": "npm run evaluate",
+    "expectedBehavior": "Independent objective matches, 0 violations",
+    "observedBehavior": "2/3;\u20b90;1loan;0 complete alternatives; 0 violations; measured runtime in JSON",
+    "evidenceArtifact": "docs/evaluation-results.json",
+    "commitSHA": null
+  },
+  {
+    "id": 26,
+    "group": "Evaluation",
+    "requirement": "Borrow dates conflict",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "scripts/evaluate.ts",
+      "docs/EVALUATION.md"
+    ],
+    "verificationCommand": "npm run evaluate",
+    "expectedBehavior": "Independent objective matches, 0 violations",
+    "observedBehavior": "3/3;\u20b9850;0loans;3 alternatives; 0 violations; measured runtime in JSON",
+    "evidenceArtifact": "docs/evaluation-results.json",
+    "commitSHA": null
+  },
+  {
+    "id": 27,
+    "group": "Evaluation",
+    "requirement": "Inspected garment rejected",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "scripts/evaluate.ts",
+      "docs/EVALUATION.md"
+    ],
+    "verificationCommand": "npm run evaluate",
+    "expectedBehavior": "Independent objective matches, 0 violations",
+    "observedBehavior": "3/3;\u20b9850;0loans;1 alternative; 0 violations; measured runtime in JSON",
+    "evidenceArtifact": "docs/evaluation-results.json",
+    "commitSHA": null
+  },
+  {
+    "id": 28,
+    "group": "Evaluation",
+    "requirement": "No complete wardrobe",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "scripts/evaluate.ts",
+      "docs/EVALUATION.md"
+    ],
+    "verificationCommand": "npm run evaluate",
+    "expectedBehavior": "Independent objective matches, 0 violations",
+    "observedBehavior": "1/3;\u20b90;0loans;0 complete alternatives; 0 violations; measured runtime in JSON",
+    "evidenceArtifact": "docs/evaluation-results.json",
+    "commitSHA": null
+  },
+  {
+    "id": 29,
+    "group": "Security",
+    "requirement": "Image formats,dimensions,body limits",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts",
+      "docs/SECURITY.md"
+    ],
+    "verificationCommand": "npm test; npm audit",
+    "expectedBehavior": "Image formats,dimensions,body limits verified",
+    "observedBehavior": "Malformed/MIME/SVG/GIF/oversize rejected before provider",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 30,
+    "group": "Security",
+    "requirement": "Explicit server-side consent",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts",
+      "docs/SECURITY.md"
+    ],
+    "verificationCommand": "npm test; npm audit",
+    "expectedBehavior": "Explicit server-side consent verified",
+    "observedBehavior": "False/missing consent rejected",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 31,
+    "group": "Security",
+    "requirement": "Session ownership and deletion",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts",
+      "docs/SECURITY.md"
+    ],
+    "verificationCommand": "npm test; npm audit",
+    "expectedBehavior": "Session ownership and deletion verified",
+    "observedBehavior": "Foreign/expired/deleted jobs404",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 32,
+    "group": "Security",
+    "requirement": "Origin and production cookie protection",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts",
+      "docs/SECURITY.md"
+    ],
+    "verificationCommand": "npm test; npm audit",
+    "expectedBehavior": "Origin and production cookie protection verified",
+    "observedBehavior": "Exact HTTPS origin mandatory; Secure HttpOnly SameSite cookie",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 33,
+    "group": "Security",
+    "requirement": "Rate and persistent quota limits",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts",
+      "docs/SECURITY.md"
+    ],
+    "verificationCommand": "npm test; npm audit",
+    "expectedBehavior": "Rate and persistent quota limits verified",
+    "observedBehavior": "Ingress13th429; session/global reservations survive restart",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 34,
+    "group": "Security",
+    "requirement": "Provider URL and credential boundary",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts",
+      "docs/SECURITY.md"
+    ],
+    "verificationCommand": "npm test; npm audit",
+    "expectedBehavior": "Provider URL and credential boundary verified",
+    "observedBehavior": "Fixed API/S3 allowlist, no redirects or bearer on upload",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 35,
+    "group": "Security",
+    "requirement": "Metadata stripping",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts",
+      "docs/SECURITY.md"
+    ],
+    "verificationCommand": "npm test; npm audit",
+    "expectedBehavior": "Metadata stripping verified",
+    "observedBehavior": "EXIF/ICC/XMP removed and orientation applied",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 36,
+    "group": "Security",
+    "requirement": "Restart and timeout behavior",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts",
+      "docs/SECURITY.md"
+    ],
+    "verificationCommand": "npm test; npm audit",
+    "expectedBehavior": "Restart and timeout behavior verified",
+    "observedBehavior": "Interrupted jobs error; no paid automatic retry",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 37,
+    "group": "Security",
+    "requirement": "Patched vulnerable dependency",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts",
+      "docs/SECURITY.md"
+    ],
+    "verificationCommand": "npm test; npm audit",
+    "expectedBehavior": "Patched vulnerable dependency verified",
+    "observedBehavior": "Sharp0.35.5; npm audit0",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 38,
+    "group": "Security",
+    "requirement": "Privacy disclosure and secret checks",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "server/index.ts",
+      "tests/server.test.ts",
+      "docs/SECURITY.md"
+    ],
+    "verificationCommand": "npm test; npm audit",
+    "expectedBehavior": "Privacy disclosure and secret checks verified",
+    "observedBehavior": "No provider-deletion claim; final scoped scan required",
+    "evidenceArtifact": "docs/SECURITY_FINALIZATION.md",
+    "commitSHA": null
+  },
+  {
+    "id": 39,
+    "group": "Deployment",
+    "requirement": "Stable Node24 persistent host",
+    "status": "prepared",
+    "changedFiles": [
+      "Dockerfile",
+      "deploy/docker-compose.yml"
+    ],
+    "verificationCommand": "Deploy exact committed archive",
+    "expectedBehavior": "One persistent process, private DATA_DIR",
+    "observedBehavior": "Existing Lightsail capacity and Node24 image verified; app not deployed yet",
+    "evidenceArtifact": "docs/DEPLOYMENT.md",
+    "commitSHA": null
+  },
+  {
+    "id": 40,
+    "group": "Deployment",
+    "requirement": "Isolated container and HTTPS route",
+    "status": "pending",
+    "changedFiles": [
+      "deploy/docker-compose.yml"
+    ],
+    "verificationCommand": "Hosted inspect and curl",
+    "expectedBehavior": "No host port or existing-app disruption",
+    "observedBehavior": "Prepared; requires release commit",
+    "evidenceArtifact": "docs/DEPLOYMENT.md",
+    "commitSHA": null
+  },
+  {
+    "id": 41,
+    "group": "Deployment",
+    "requirement": "Correct origin and secure cookies",
+    "status": "pending",
+    "changedFiles": [
+      "deploy/docker-compose.yml"
+    ],
+    "verificationCommand": "Hosted origin/deletion tests",
+    "expectedBehavior": "Valid origin allowed, hostile403",
+    "observedBehavior": "Configured, hosted verification pending",
+    "evidenceArtifact": "docs/DEPLOYMENT.md",
+    "commitSHA": null
+  },
+  {
+    "id": 42,
+    "group": "Deployment",
+    "requirement": "Tested source equals deployed SHA",
+    "status": "pending",
+    "changedFiles": [
+      "deploy/deploy-release.sh"
+    ],
+    "verificationCommand": "git archive HEAD; GET /api/status",
+    "expectedBehavior": "Exact full SHA match",
+    "observedBehavior": "Awaiting user commit/push authorization",
+    "evidenceArtifact": "release-manifest.json",
+    "commitSHA": null
+  },
+  {
+    "id": 43,
+    "group": "Deployment",
+    "requirement": "Fresh hosted desktop/mobile journey",
+    "status": "pending",
+    "changedFiles": [
+      "tests/journey.mjs"
+    ],
+    "verificationCommand": "Fresh Chromium against hosted URL",
+    "expectedBehavior": "Replay decision/replan works over HTTPS",
+    "observedBehavior": "Pending deployment",
+    "evidenceArtifact": "hosted-browser.json",
+    "commitSHA": null
+  },
+  {
+    "id": 44,
+    "group": "Deployment",
+    "requirement": "Free judge access through judging",
+    "status": "ongoing",
+    "changedFiles": [
+      "deploy/docker-compose.yml"
+    ],
+    "verificationCommand": "Public availability checks through Nov20",
+    "expectedBehavior": "No registration or payment for judges",
+    "observedBehavior": "No expiry planned; full-period availability cannot yet be verified",
+    "evidenceArtifact": "docs/DEPLOYMENT.md",
+    "commitSHA": null
+  },
+  {
+    "id": 45,
+    "group": "Demo",
+    "requirement": "Fresh real application recording",
+    "status": "pending",
+    "changedFiles": [
+      "docs/DEVPOST_FINAL.md"
+    ],
+    "verificationCommand": "Record Chromium working application",
+    "expectedBehavior": "1\u20133min real app, replay explicitly labeled",
+    "observedBehavior": "Preparing new captioned recording",
+    "evidenceArtifact": "borrowed-confidence-demo.mp4",
+    "commitSHA": null
+  },
+  {
+    "id": 46,
+    "group": "Demo",
+    "requirement": "Honest provider evidence and latency labels",
+    "status": "pending",
+    "changedFiles": [
+      "docs/DEVPOST_FINAL.md"
+    ],
+    "verificationCommand": "Inspect final recording frames",
+    "expectedBehavior": "Replay versus live unambiguous, no fabricated render",
+    "observedBehavior": "Script prepared; final media review pending",
+    "evidenceArtifact": "demo-verification.json",
+    "commitSHA": null
+  },
+  {
+    "id": 47,
+    "group": "Demo",
+    "requirement": "Permitted public video link",
+    "status": "blocked",
+    "changedFiles": [
+      "docs/DEVPOST_FINAL.md"
+    ],
+    "verificationCommand": "Public YouTube/Vimeo playback test",
+    "expectedBehavior": "No login or password",
+    "observedBehavior": "Main Himanshu Jha account named; upload access not verified",
+    "evidenceArtifact": "Devpost project video field",
+    "commitSHA": null
+  },
+  {
+    "id": 48,
+    "group": "Submission",
+    "requirement": "Actual draft, description, exact answers",
+    "status": "verified-working-tree",
+    "changedFiles": [
+      "docs/DEVPOST_FINAL.md"
+    ],
+    "verificationCommand": "Devpost create_project/get_project",
+    "expectedBehavior": "Draft with accurate narrative",
+    "observedBehavior": "Draft project1517996/submission1272426 created",
+    "evidenceArtifact": "https://devpost.com/software/borrowed-confidence",
+    "commitSHA": null
+  },
+  {
+    "id": 49,
+    "group": "Submission",
+    "requirement": "Gallery and source links",
+    "status": "pending",
+    "changedFiles": [
+      "docs/DEVPOST_FINAL.md"
+    ],
+    "verificationCommand": "Upload inspected screenshots; check links",
+    "expectedBehavior": "Actual screenshots, live app, public MIT repo",
+    "observedBehavior": "Repository public; gallery/public app link pending",
+    "evidenceArtifact": "Devpost project gallery",
+    "commitSHA": null
+  },
+  {
+    "id": 50,
+    "group": "Submission",
+    "requirement": "Eligibility, rule agreement and submitted state",
+    "status": "blocked",
+    "changedFiles": [
+      "docs/DEVPOST_FINAL.md"
+    ],
+    "verificationCommand": "Devpost account/rules/final submit",
+    "expectedBehavior": "Truthful declarations and Submitted receipt",
+    "observedBehavior": "India/adult/student declared; account kmclu.ac.in verified; rules agreement and final submission pending",
+    "evidenceArtifact": "Devpost submission1272426",
+    "commitSHA": null
+  }
+]

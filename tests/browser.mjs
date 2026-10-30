@@ -1,14 +1,13 @@
 // Optional browser regression. Install @sparticuz/chromium without saving it first.
 // Run after npm run build: node --import tsx tests/browser.mjs
 import { chromium as playwright, expect } from '@playwright/test';
-import chromium from '@sparticuz/chromium';
 import { createApp } from '../server/index.ts';
 import {mkdirSync} from 'node:fs';
-const app=createApp({env:{NODE_ENV:'production'},dbPath:':memory:'});
+const app=createApp({env:{NODE_ENV:'production',APP_ORIGIN:'https://browser-test.example'},dbPath:':memory:'});
 const server=app.listen(0,'127.0.0.1');
 await new Promise(r=>server.once('listening',r));
 const base='http://127.0.0.1:'+server.address().port;
-const browser=await playwright.launch({executablePath:await chromium.executablePath(),args:chromium.args,headless:true});
+const browser=await playwright.launch({headless:true});
 mkdirSync('test-results',{recursive:true});
 try{
  const desktop=await browser.newPage({viewport:{width:1440,height:1000}});
@@ -45,10 +44,10 @@ try{
  await expect(mobile.locator('dialog')).toBeVisible();
  dims=await overflow();if(dims.scroll>dims.width)throw new Error('Mobile modal overflow '+JSON.stringify(dims));
  await mobile.getByRole('button',{name:'Close walkthrough'}).click();
- await mobile.getByRole('button',{name:'Try the sample planner',exact:false}).click();
+ await mobile.getByRole('button',{name:'Plan my interview week',exact:false}).click();
  dims=await overflow();if(dims.scroll>dims.width)throw new Error('Planner mobile overflow '+JSON.stringify(dims));
  console.log('Mobile 390px: menu, anchors, live sample, video dialog and planner navigation passed. No horizontal overflow.');
- for(const width of [320,375,768,1024]){await desktop.setViewportSize({width,height:900});await desktop.goto(base);let d=await desktop.evaluate(()=>({w:innerWidth,s:document.documentElement.scrollWidth}));if(d.s>d.w)throw new Error('Landing overflow at '+width);await desktop.getByRole('button',{name:'Try the sample planner',exact:false}).click();d=await desktop.evaluate(()=>({w:innerWidth,s:document.documentElement.scrollWidth}));if(d.s>d.w)throw new Error('Planner overflow at '+width);}
+ for(const width of [320,375,768,1024]){await desktop.setViewportSize({width,height:900});await desktop.goto(base);let d=await desktop.evaluate(()=>({w:innerWidth,s:document.documentElement.scrollWidth}));if(d.s>d.w)throw new Error('Landing overflow at '+width);await desktop.getByRole('button',{name:'Plan my interview week',exact:false}).click();d=await desktop.evaluate(()=>({w:innerWidth,s:document.documentElement.scrollWidth}));if(d.s>d.w)throw new Error('Planner overflow at '+width);}
  console.log('Width checks 320, 375, 768 and 1024px passed for landing and planner.');
  await desktop.setViewportSize({width:1440,height:1000});
  await desktop.goto(base);await desktop.screenshot({path:'test-results/landing-desktop.png',fullPage:true});

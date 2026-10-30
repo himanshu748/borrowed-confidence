@@ -1,4 +1,6 @@
-# Submission working draft
+# Historical submission working draft
+
+For the current finalization narrative and form answers, see [DEVPOST_FINAL.md](DEVPOST_FINAL.md). The original draft below is retained for provenance and does not describe the final release status.
 
 Do not submit this draft unchanged. Complete the live integration and validation gates first. Distinguish implemented features from plans everywhere, including the video.
 
