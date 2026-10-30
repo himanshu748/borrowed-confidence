@@ -1,12 +1,27 @@
-# Active demo update — October30,2026
+# Active demo update — October 30, 2026
 
-The active native video modal now uses src/media/final-demo.mp4: the fresh160-second continuous application recording with Deepgram narration and English captions. It includes the actual authorized October30 YouCam request, visual comparison, rejection/recalculation and budget gap. The recording identifies private local live execution versus public historical replay. The old src/media/walkthrough.mp4 and its checksummed bundle remain preserved as historical evidence. Video loading remains preload=none; playback never starts a provider request. Keyboard dialog closure/focus and mobile playback are regression checked with the new asset.
+The active native video modal uses `src/media/final-demo.mp4`: the polished 149-second edit of the original genuine application recording, with natural Deepgram narration and English captions outside the application UI. It shows the already authorized October 30 YouCam request, visual comparison, actual rejection/recalculation, and the budget gap. It does not represent a new provider request.
 
-# Finalization update — October 30, 2026
+Idle intervals at source 10–15, 37.7–41 and 131–138 seconds are removed. The complete actual YouCam wait at source 58–75.62 seconds remains uncut and at 1× speed. Every retained application segment and every original Deepgram voice stem plays at 1× speed. The decision report is uniformly enlarged for readability; a final URL card closes the video. This is edited footage, not a continuous recording or an accelerated render.
 
-The primary action now opens the working planner immediately. The 62-second modal is retained as an explicitly historical walkthrough. The connected studio supports exact garment/event context, genuine historical before/after replay, acceptance/rejection and actual replanning. Pine/editorial styling is preserved, with measured contrast fixes. The final narrated160-second judging video is https://www.youtube.com/watch?v=MSZC_hIJOiA and shows a fresh real authorized request through the updated UI. Public rendering stays disabled to bound costs.
+The polished MP4 is 1920 × 1080, H.264/AAC, 149.0 seconds, SHA-256 `578ff0cfb487927794d51db67a4e59034227f39d938f8f1c326d4f81c3924eec`. The original 160-second capture/narrated version and the old `src/media/walkthrough.mp4` checksummed bundle remain preserved as historical evidence. No new YouCam or Deepgram request was made to integrate this edit.
 
-The original design/media record follows; historical wording about primary CTA predates this finalization.
+The primary action opens the working planner. Video loading remains `preload=none`; opening or playing the walkthrough starts no provider request. Browser regression checks verify actual duration, advancing playback, an unmuted player with one audio track, dialog closure, mobile layout and planner navigation. Public rendering remains disabled and the hosted studio uses clearly labeled historical replay.
+
+The previous player updates and original design/media record follow unchanged as historical notes. They do not describe the current player. Public video publication and Devpost links are maintained separately in `docs/DEVPOST_FINAL.md`.
+
+## Superseded player updates — preserved historical record
+
+> # Active demo update — October30,2026
+>
+> The active native video modal now uses src/media/final-demo.mp4: the fresh160-second continuous application recording with Deepgram narration and English captions. It includes the actual authorized October30 YouCam request, visual comparison, rejection/recalculation and budget gap. The recording identifies private local live execution versus public historical replay. The old src/media/walkthrough.mp4 and its checksummed bundle remain preserved as historical evidence. Video loading remains preload=none; playback never starts a provider request. Keyboard dialog closure/focus and mobile playback are regression checked with the new asset.
+>
+> # Finalization update — October 30, 2026
+>
+> The primary action now opens the working planner immediately. The 62-second modal is retained as an explicitly historical walkthrough. The connected studio supports exact garment/event context, genuine historical before/after replay, acceptance/rejection and actual replanning. Pine/editorial styling is preserved, with measured contrast fixes. The final narrated160-second judging video is https://www.youtube.com/watch?v=MSZC_hIJOiA and shows a fresh real authorized request through the updated UI. Public rendering stays disabled to bound costs.
+>
+> The original design/media record follows; historical wording about primary CTA predates this finalization.
+>
 
 # Landing page and media notes
 

@@ -6,7 +6,7 @@ A student interview-week wardrobe planner combining owned, borrowed and purchase
 
 ## Landing page
 
-The root opens the premium campus-editorial landing page. Its primary CTA opens the working planner. The secondary walkthrough opens the fresh narrated160-second demo, including a real authorized YouCam request and connected replanning. The original62-second recording remains preserved in the historical media bundle. A live sample uses the same planner engine for availability and budget changes. The full planner is accessible at #planner. See docs/LANDING.md for media provenance and photography licensing.
+The root opens the premium campus-editorial landing page. Its primary CTA opens the working planner. The secondary walkthrough opens the polished 149-second demo with natural Deepgram narration, English captions, a real authorized YouCam request and connected replanning. Idle pauses are trimmed; the complete real rendering wait stays at actual speed. The original 62-second recording and the full 160-second capture remain preserved as historical evidence. A live sample uses the same planner engine for availability and budget changes. The full planner is accessible at #planner. See docs/LANDING.md for media provenance and photography licensing.
 
 ## What works now
 
@@ -129,7 +129,7 @@ Use Node 24. On a machine with a global libvips installation, `SHARP_IGNORE_GLOB
 ## Final release evidence and remaining submission gates
 
 1. Three synthetic-input live tests are complete, including a fresh updated-UI outerwear run on October30 (17.62 seconds, exactly2 units). See docs/FINAL_LIVE_TEST.md. Broader compatibility remains unvalidated.
-2. A new160-second recording captures the real updated-UI render and complete rejection/replanning journey. The old landing walkthrough remains clearly historical.
+2. The active 149-second video edits the original 160-second recording of the real updated-UI render and complete rejection/replanning journey. Only idle intervals are removed; the real provider wait is uncut. The older recordings remain preserved.
 3. Replace or supplement the sample inventory with permissioned real garment photos.
 4. Test with students and report actual observations, not invented metrics.
 5. Participant confirmed student eligibility and rules agreement; connected Devpost email has school domain kmclu.ac.in. Verify actual Rising Star opt-in.
